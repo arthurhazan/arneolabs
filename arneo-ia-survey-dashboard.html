@@ -203,24 +203,23 @@
         }
 
         .bar-item {
-            display: flex;
+            display: grid;
+            grid-template-columns: 280px 1fr;
             align-items: center;
             gap: 20px;
         }
 
         .bar-label {
-            min-width: 200px;
             font-size: 14px;
             color: rgba(255, 255, 255, 0.8);
+            text-align: left;
         }
 
         .bar-wrapper {
-            flex: 1;
             height: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            overflow: hidden;
             position: relative;
+            display: flex;
+            align-items: center;
         }
 
         .bar-fill {
@@ -232,6 +231,7 @@
             padding-right: 15px;
             transition: width 1s ease;
             border-radius: 8px;
+            min-width: 80px;
         }
 
         .bar-value {
@@ -383,6 +383,51 @@
 
             .people-grid {
                 grid-template-columns: 1fr;
+            }
+
+            /* Bar charts responsive */
+            .bar-item {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .bar-label {
+                text-align: left;
+                font-size: 13px;
+            }
+
+            .bar-fill {
+                min-width: 60px;
+            }
+
+            .chart-container {
+                padding: 25px 20px;
+            }
+
+            .chart-title {
+                font-size: 22px;
+            }
+        }
+
+        /* Tablettes */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .bar-item {
+                grid-template-columns: 220px 1fr;
+            }
+
+            .bar-label {
+                font-size: 13px;
+            }
+        }
+
+        /* Grands écrans */
+        @media (min-width: 1600px) {
+            .container {
+                max-width: 1800px;
+            }
+
+            .bar-item {
+                grid-template-columns: 320px 1fr;
             }
         }
 
@@ -1103,9 +1148,18 @@
 
         function initCharts() {
             if (!surveyData) return;
+            
+            // Données normalisées
+            const normalizedIdeStats = [["VSCode", 6], ["PhpStorm", 4], ["IntelliJ IDEA", 2], ["PyCharm", 2], ["Eclipse", 1], ["Vim/Neovim", 1], ["Zed", 1], ["Cursor/Void", 1]];
+            
+            // Données normalisées par pôle
+            const normalizedDevTools = [["ChatGPT", 8], ["Assistants de code IDE", 6], ["Claude (Anthropic)", 4], ["GitHub Copilot", 4], ["Google Gemini", 3], ["OpenAI Codex", 2], ["mistral AI", 1], ["Mistral", 1]];
+            const normalizedDesignTools = [["Figma AI / plugins IA", 8], ["Claude (Anthropic)", 7], ["ChatGPT", 6], ["Perplexity", 4], ["Plugins IA Adobe", 3], ["Outils de génération de texte/copy", 2], ["Adobe Firefly", 2], ["NotebookLM", 1]];
+            const normalizedPmTools = [["ChatGPT", 7], ["Perplexity", 4], ["L'outil IA de Mantu", 1], ["Celui qui m'est proposé sur whats app (pour du perso)", 1], ["Claude (Anthropic)", 1], ["Lovable", 1]];
+            const normalizedToolStats = [["ChatGPT", 21], ["Claude (Anthropic)", 12], ["Figma AI / plugins IA", 8], ["Perplexity", 8], ["Assistants de code IDE", 6], ["GitHub Copilot", 4], ["Plugins IA Adobe", 3], ["Génération de texte", 2], ["Adobe Firefly", 2], ["Outil CLI (Google Gemini CLI", 2], ["OpenAI Codex", 2], ["NotebookLM", 1]];
 
             // Global tools chart
-            createBarChart('tools-chart', surveyData.top_tools);
+            createBarChart('tools-chart', normalizedToolStats);
 
             // Freins chart
             createBarChart('freins-chart', surveyData.top_freins);
@@ -1130,7 +1184,7 @@
                 }
             });
             const devToolsArray = Object.entries(devTools).sort((a, b) => b[1] - a[1]).slice(0, 8);
-            createBarChart('dev-tools-chart', devToolsArray);
+            createBarChart('dev-tools-chart', normalizedDevTools);
 
             // Dev evaluation
             const devEval = {};
@@ -1148,7 +1202,7 @@
                     devIde[p.ide] = (devIde[p.ide] || 0) + 1;
                 }
             });
-            createBarChart('dev-ide-chart', Object.entries(devIde).sort((a, b) => b[1] - a[1]));
+            createBarChart('dev-ide-chart', normalizedIdeStats);
 
             // Design charts
             const designPeople = surveyData.people.filter(p => p.pole === 'design');
@@ -1162,7 +1216,7 @@
                 }
             });
             const designToolsArray = Object.entries(designTools).sort((a, b) => b[1] - a[1]).slice(0, 8);
-            createBarChart('design-tools-chart', designToolsArray);
+            createBarChart('design-tools-chart', normalizedDesignTools);
 
             // Design evaluation
             const designEval = {};
@@ -1185,7 +1239,7 @@
                 }
             });
             const pmToolsArray = Object.entries(pmTools).sort((a, b) => b[1] - a[1]).slice(0, 8);
-            createBarChart('pm-tools-chart', pmToolsArray);
+            createBarChart('pm-tools-chart', normalizedPmTools);
         }
 
         function createBarChart(elementId, data, unit = '') {
@@ -1193,11 +1247,18 @@
             if (!container) return;
 
             const maxValue = Math.max(...data.map(item => item[1]));
+            
+            // Calculer la largeur maximale disponible de manière responsive
+            const containerWidth = container.offsetWidth;
+            const labelWidth = 280; // Largeur fixe des labels
+            const gap = 20; // Gap entre label et barre
+            const padding = 40; // Padding de sécurité
+            const maxBarWidth = Math.max(300, containerWidth - labelWidth - gap - padding);
 
             container.innerHTML = '';
             data.forEach(item => {
                 const [label, value] = item;
-                const percentage = (value / maxValue) * 100;
+                const barWidth = (value / maxValue) * maxBarWidth;
 
                 const barItem = document.createElement('div');
                 barItem.className = 'bar-item';
@@ -1211,7 +1272,7 @@
 
                 const barFill = document.createElement('div');
                 barFill.className = 'bar-fill';
-                barFill.style.width = '0%';
+                barFill.style.width = '0px';
                 
                 const barValue = document.createElement('span');
                 barValue.className = 'bar-value';
@@ -1225,7 +1286,7 @@
 
                 // Animate
                 setTimeout(() => {
-                    barFill.style.width = percentage + '%';
+                    barFill.style.width = barWidth + 'px';
                 }, 100);
             });
         }
@@ -1297,6 +1358,17 @@
                 }
             });
         }
+
+        // Redessiner les charts au resize de la fenêtre
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                if (surveyData) {
+                    initCharts();
+                }
+            }, 250);
+        });
 
         // Generate starburst rays
         const starburst = document.querySelector('.starburst');
