@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARNEO - Enquête Usage de l'IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --orange-arneo: #FF5229;
+            --noir: #1A1A1A;
+            --blanc: #FFFFFF;
+            --gris-clair: #F5F5F5;
+            --gris-moyen: #666666;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--noir);
+            color: var(--blanc);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: var(--noir);
+            padding: 40px 60px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .starburst {
+            position: absolute;
+            top: 20px;
+            right: 60px;
+            width: 80px;
+            height: 80px;
+        }
+
+        .starburst-ray {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2px;
+            height: 40px;
+            background: var(--orange-arneo);
+            transform-origin: 0 0;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--orange-arneo);
+            letter-spacing: -1px;
+        }
+
+        .title {
+            font-size: 72px;
+            font-weight: 300;
+            letter-spacing: -3px;
+            margin: 40px 0 20px 0;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            gap: 0;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0;
+            margin: 40px 60px 0 60px;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 20px 30px;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .tab.active {
+            background: rgba(255, 82, 41, 0.1);
+            color: var(--orange-arneo);
+            border-bottom-color: var(--orange-arneo);
+        }
+
+        /* Container */
+        .container {
+            padding: 60px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--orange-arneo);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--orange-arneo);
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 600;
+            color: var(--orange-arneo);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+        }
+
+        /* Charts */
+        .chart-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chart-title {
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            color: var(--blanc);
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .bar-label {
+            min-width: 200px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .bar-wrapper {
+            flex: 1;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--orange-arneo), #ff7a50);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 15px;
+            transition: width 1s ease;
+            border-radius: 8px;
+        }
+
+        .bar-value {
+            color: var(--blanc);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Filter Section */
+        .filters {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .filter-label {
+            display: block;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--blanc);
+            font-size: 15px;
+            font-family: 'Work Sans', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-select:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--orange-arneo);
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--orange-arneo);
+        }
+
+        .filter-select option {
+            background: var(--noir);
+            color: var(--blanc);
+        }
+
+        /* People Grid */
+        .people-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .person-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .person-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--orange-arneo);
+        }
+
+        .person-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--blanc);
+            margin-bottom: 8px;
+        }
+
+        .person-role {
+            font-size: 14px;
+            color: var(--orange-arneo);
+            margin-bottom: 15px;
+        }
+
+        .person-detail {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .person-detail strong {
+            color: rgba(255, 255, 255, 0.9);
+            display: inline-block;
+            min-width: 80px;
+        }
+
+        /* Insight boxes */
+        .insight-box {
+            background: linear-gradient(135deg, rgba(255, 82, 41, 0.1), rgba(255, 82, 41, 0.05));
+            border-left: 4px solid var(--orange-arneo);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .insight-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--orange-arneo);
+            margin-bottom: 12px;
+        }
+
+        .insight-text {
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header, .container {
+                padding: 30px;
+            }
+
+            .tabs {
+                margin: 30px 30px 0 30px;
+                flex-direction: column;
+            }
+
+            .title {
+                font-size: 42px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+
+            .people-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="starburst">
+            <!-- Starburst rays -->
+        </div>
+        <div class="logo">ARNEO_</div>
+        <h1 class="title">Usage de l'IA au sein<br>des départements</h1>
+        <p class="subtitle">Enquête interne • Novembre 2025 • 30 répondants</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('global')">📊 Vue globale</button>
+        <button class="tab" onclick="showTab('dev')">💻 Développement</button>
+        <button class="tab" onclick="showTab('design')">🎨 Design</button>
+        <button class="tab" onclick="showTab('pm')">📋 Gestion de projet</button>
+        <button class="tab" onclick="showTab('people')">👥 Par personne</button>
+    </div>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Global Tab -->
+        <div id="global" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">30</div>
+                    <div class="stat-label">Répondants total</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">13</div>
+                    <div class="stat-label">Développeurs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Designers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Chefs de projet</div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <div class="insight-title">🎯 Insight clé</div>
+                <div class="insight-text">
+                    <strong>87% des répondants</strong> utilisent déjà des outils d'IA dans leur quotidien (régulièrement ou occasionnellement). L'adoption est particulièrement forte chez les designers (100%) et les développeurs (92%). Le principal frein reste la <strong>confidentialité des données</strong>, suivi par le <strong>coût des abonnements</strong>.
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">Top 10 des outils utilisés</h3>
+                <div class="bar-chart" id="tools-chart"></div>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">Principaux freins à l'adoption</h3>
+                <div class="bar-chart" id="freins-chart"></div>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">Taux d'adoption par pôle</h3>
+                <div class="bar-chart" id="adoption-chart"></div>
+            </div>
+        </div>
+
+        <!-- Dev Tab -->
+        <div id="dev" class="tab-content">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">13</div>
+                    <div class="stat-label">Développeurs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">92%</div>
+                    <div class="stat-label">Utilisent l'IA</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">62%</div>
+                    <div class="stat-label">Usage régulier</div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <div class="insight-title">💡 Insights Développement</div>
+                <div class="insight-text">
+                    Les développeurs sont très adoptifs avec 92% d'utilisateurs. <strong>ChatGPT et GitHub Copilot</strong> dominent. Les cas d'usage principaux : <strong>autocomplétion, debugging, et compréhension du code existant</strong>. Le frein majeur reste la <strong>confidentialité du code</strong> (fuites de données potentielles).
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">Outils les plus utilisés (Dev)</h3>
+                <div class="bar-chart" id="dev-tools-chart"></div>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">Évaluation de l'apport de l'IA</h3>
+                <div class="bar-chart" id="dev-eval-chart"></div>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">IDEs utilisés</h3>
+                <div class="bar-chart" id="dev-ide-chart"></div>
+            </div>
+        </div>
+
+        <!-- Design Tab -->
+        <div id="design" class="tab-content">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Designers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Utilisent l'IA</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">70%</div>
+                    <div class="stat-label">Usage régulier</div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <div class="insight-title">🎨 Insights Design</div>
+                <div class="insight-text">
+                    <strong>Adoption totale</strong> chez les designers avec 100% d'utilisateurs. Les outils phares : <strong>Claude, Figma AI, ChatGPT</strong>. Cas d'usage : <strong>génération de wireframes, microcopy, recherche d'inspiration, retouche d'images</strong>. Freins : <strong>confidentialité des projets clients</strong>, qualité/cohérence des résultats, et crainte de perte de contrôle créatif.
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">Outils les plus utilisés (Design)</h3>
+                <div class="bar-chart" id="design-tools-chart"></div>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">Évaluation de l'apport de l'IA</h3>
+                <div class="bar-chart" id="design-eval-chart"></div>
+            </div>
+        </div>
+
+        <!-- PM Tab -->
+        <div id="pm" class="tab-content">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Chefs de projet</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">71%</div>
+                    <div class="stat-label">Utilisent l'IA</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">43%</div>
+                    <div class="stat-label">Usage régulier</div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <div class="insight-title">📋 Insights Gestion de projet</div>
+                <div class="insight-text">
+                    71% des chefs de projet utilisent l'IA, principalement pour la <strong>rédaction, synthèse de documents, et recherche d'informations</strong>. <strong>ChatGPT domine</strong> largement. Pain points : <strong>gestion des demandes clients contradictoires, coordination des équipes, documentation</strong>. Un potentiel fort pour automatiser les tâches administratives.
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">Outils les plus utilisés (PM)</h3>
+                <div class="bar-chart" id="pm-tools-chart"></div>
+            </div>
+        </div>
+
+        <!-- People Tab -->
+        <div id="people" class="tab-content">
+            <div class="filters">
+                <div class="filter-group">
+                    <label class="filter-label">Filtrer par pôle</label>
+                    <select class="filter-select" id="pole-filter" onchange="filterPeople()">
+                        <option value="all">Tous les pôles</option>
+                        <option value="dev">Développement</option>
+                        <option value="design">Design</option>
+                        <option value="pm">Gestion de projet</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Filtrer par usage</label>
+                    <select class="filter-select" id="usage-filter" onchange="filterPeople()">
+                        <option value="all">Tous</option>
+                        <option value="regular">Utilisateurs réguliers</option>
+                        <option value="occasional">Utilisateurs occasionnels</option>
+                        <option value="rare">Utilisateurs rares</option>
+                        <option value="never">Non-utilisateurs</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="people-grid" id="people-grid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const SURVEY_DATA = {
+  "total_respondents": 30,
+  "poles": {
+    "dev": 13,
+    "design": 10,
+    "pm": 7
+  },
+  "usage_by_pole": {
+    "dev": {
+      "Oui, régulièrement": 8,
+      "Oui, rarement": 1,
+      "Oui, occasionnellement": 3,
+      "Non, mais j'aimerais essayer": 1
+    },
+    "design": {
+      "Oui, régulièrement": 7,
+      "Oui, occasionnellement": 3
+    },
+    "pm": {
+      "Oui tous les jours": 5,
+      "Ca m'arrive mais c'est rare": 1,
+      "Plusieurs fois par semaine": 1
+    }
+  },
+  "top_tools": [
+    [
+      "ChatGPT",
+      15
+    ],
+    [
+      "Figma AI / plugins IA dans Figma",
+      8
+    ],
+    [
+      "Claude (Anthropic)",
+      7
+    ],
+    [
+      "Perplexity",
+      5
+    ],
+    [
+      "DALL-E / ChatGPT",
+      4
+    ],
+    [
+      "GitHub Copilot",
+      4
+    ],
+    [
+      "Plugins IA pour Photoshop/Illustrator",
+      3
+    ],
+    [
+      "Claude",
+      3
+    ],
+    [
+      "Autre assistant de code intégré à l'IDE (Continue, KiloCode, etc...)",
+      3
+    ],
+    [
+      "Outils de génération de texte/copy",
+      2
+    ]
+  ],
+  "top_freins": [
+    [
+      "Préoccupations sur la confidentialité du code / fuites de données",
+      12
+    ],
+    [
+      "Coût des abonnements",
+      10
+    ],
+    [
+      "Manque de formation / méconnaissance des outils",
+      9
+    ],
+    [
+      "Préoccupations sur la confidentialité des projets clients",
+      7
+    ],
+    [
+      "Qualité/cohérence des résultats insuffisante",
+      7
+    ],
+    [
+      "Consommation de ressources locales (CPU/RAM)",
+      7
+    ],
+    [
+      "Manque de temps pour expérimenter",
+      6
+    ],
+    [
+      "Qualité des résultats insuffisante",
+      5
+    ]
+  ],
+  "people": [
+    {
+      "id": 1,
+      "name": "Mélanie DE CRUZEL",
+      "email": "melanie.decruzel@arneo.io",
+      "department": "UX/UI",
+      "team": "N/A",
+      "pole": "design",
+      "usage": "Oui, régulièrement",
+      "tools": "Figma AI / plugins IA dans Figma;Perplexity, NotebookLM;",
+      "evaluation": "Utile sur certaines tâches spécifiques",
+      "freins": "Préoccupations sur la confidentialité des projets clients;Coût des abonnements;Manque de temps pour expérimenter;"
+    },
+    {
+      "id": 2,
+      "name": "Charline DANTIGNY",
+      "email": "charline.dantigny@arneo.io",
+      "department": "UX/UI",
+      "team": "N/A",
+      "pole": "design",
+      "usage": "Oui, régulièrement",
+      "tools": "Claude (Anthropic);Outils de génération de texte/copy;Perplexity;DALL-E / ChatGPT;",
+      "evaluation": "Très utile, gain de temps significatif",
+      "freins": "Coût des abonnements;Crainte de la dévalorisation du métier;"
+    },
+    {
+      "id": 3,
+      "name": "Charlotte SIEESS",
+      "email": "charlotte.sieess@arneo.io",
+      "department": "UX/UI",
+      "team": "N/A",
+      "pole": "design",
+      "usage": "Oui, régulièrement",
+      "tools": "Figma AI / plugins IA dans Figma;Claude (Anthropic);DALL-E / ChatGPT;",
+      "evaluation": "Utile sur certaines tâches spécifiques",
+      "freins": "Préoccupations sur la confidentialité des projets clients;Coût des abonnements;Qualité/cohérence des résultats insuffisante;Doute sur la valeur ajoutée créative;"
+    },
+    {
+      "id": 4,
+      "name": "Isabelle NGUYEN",
+      "email": "isabelle.nguyen@arneo.io",
+      "department": "UX/UI",
+      "team": "N/A",
+      "pole": "design",
+      "usage": "Oui, régulièrement",
+      "tools": "Claude (Anthropic);Figma AI / plugins IA dans Figma;Outils de génération de texte/copy;Perplexity, Chatgpt;",
+      "evaluation": "Très utile, gain de temps significatif",
+      "freins": "Coût des abonnements;la foultitude d'outils pas forcément utiles pour mon usage à l'instant t;"
+    },
+    {
+      "id": 5,
+      "name": "Romain GILLET",
+      "email": "romain.gillet@arneo.io",
+      "department": "UX/UI/Créa",
+      "team": "N/A",
+      "pole": "design",
+      "usage": "Oui, régulièrement",
+      "tools": "Midjourney;DALL-E / ChatGPT;Adobe Firefly;Claude (Anthropic);Figma AI / plugins IA dans Figma;Plugins IA pour Photoshop/Illustrator;Krea / Reve / Gemini / Perplexity;",
+      "evaluation": "Utile sur certaines tâches spécifiques",
+      "freins": "Préoccupations sur la confidentialité des projets clients;Questions éthiques (droits d'auteur, formation des modèles);Coût des abonnements;Qualité/cohérence des résultats insuffisante;"
+    },
+    {
+      "id": 6,
+      "name": "Caroline TURELLO",
+      "email": "caroline.turello@arneo.io",
+      "department": "UX/UI/Créa",
+      "team": "N/A",
+      "pole": "design",
+      "usage": "Oui, occasionnellement",
+      "tools": "Adobe Firefly;Plugins IA pour Photoshop/Illustrator;Chat GPT;Figma AI / plugins IA dans Figma;",
+      "evaluation": "Utile sur certaines tâches spécifiques",
+      "freins": "Coût des abonnements;Qualité/cohérence des résultats insuffisante;Manque de temps pour expérimenter;Doute sur la valeur ajoutée créative;Manque de formation / méconnaissance des outils;"
+    },
+    {
+      "id": 7,
+      "name": "Julie BERTI",
+      "email": "julie.berti@arneo.io",
+      "department": "UX/UI/Créa",
+      "team": "N/A",
+      "pole": "design",
+      "usage": "Oui, régulièrement",
+      "tools": "DALL-E / ChatGPT;Plugins IA pour Photoshop/Illustrator;",
+      "evaluation": "Utile sur certaines tâches spécifiques",
+      "freins": "Manque de formation / méconnaissance des outils;Qualité/cohérence des résultats insuffisante;Perte de contrôle créatif;Doute sur la valeur ajoutée créative;"
+    },
+    {
+      "id": 8,
+      "name": "Alexandre FILIPIAK",
+      "email": "alexandre.filipiak@arneo.io",
+      "department": "Équipe développement/système",
+      "team": "Java;",
+      "pole": "dev",
+      "usage": "Oui, régulièrement",
+      "tools": "ChatGPT;",
+      "evaluation": "Très utile, gain de temps significatif",
+      "freins": "Préoccupations sur la confidentialité du code / fuites de données;",
+      "ide": "intellij, visual studio code"
+    },
+    {
+      "id": 9,
+      "name": "Alexis BESSON",
+      "email": "alexis.besson@arneo.io",
+      "department": "Équipe développement/système",
+      "team": "Frontend;",
+      "pole": "dev",
+      "usage": "Oui, rarement",
+      "tools": "Claude;",
+      "evaluation": "Utile sur certaines tâches spécifiques",
+      "freins": "Préoccupations sur la confidentialité du code / fuites de données;Qualité des résultats insuffisante;Consommation de ressources locales (CPU/RAM);Manque de temps pour expérimenter;",
+      "ide": "VSCode"
+    },
+    {
+      "id": 10,
+      "name": "Julien JOURDE",
+      "email": "julien.jourde@arneo.io",
+      "department": "Équipe développement/système",
+      "team": "Symfony;Drupal;",
+      "pole": "dev",
+      "usage": "Oui, régulièrement",
+      "tools": "GitHub Copilot;ChatGPT;",
+      "evaluation": "Utile sur certaines tâches spécifiques",
+      "freins": "Préoccupations sur la confidentialité du code / fuites de données;Manque de formation / méconnaissance des outils;Consommation de ressources locales (CPU/RAM);",
+      "ide": "PHPStorm"
+    },
+    {
+      "id": 11,
+      "name": "Mélanie JEAN",
+      "email": "melanie.jean@arneo.io",
+      "department": "Gestion de projet",
+      "team": "N/A",
+      "pole": "pm",
+      "usage": "Oui tous les jours",
+      "tools": "ChatGPT;",
+      "freins": "Préoccupations sur la confidentialité des projets clients;Manque de formation / méconnaissance des outils;",
+      "use_cases": "Rédaction simple (Email, CR de réunion, ..);Rédactions de spécifications;Réflexion poussée (création de backlog, conception tehcnique ou fonctionnel ,aide à la compréhension, ..);Recherche, benchmark;"
+    },
+    {
+      "id": 12,
+      "name": "Astrid SERVAJEAN",
+      "email": "astrid.servajean@arneo.io",
+      "department": "Gestion de projet",
+      "team": "N/A",
+      "pole": "pm",
+      "usage": "Oui tous les jours",
+      "tools": "ChatGPT;Perplexity;L'outil IA de Mantu;",
+      "freins": "Préoccupations sur la confidentialité des projets clients;Qualité/cohérence des résultats insuffisante;",
+      "use_cases": "Rédaction simple (Email, CR de réunion, ..);Recherche, benchmark;"
+    },
+    {
+      "id": 13,
+      "name": "Abéline CHABORD",
+      "email": "abeline.chabord@arneo.io",
+      "department": "Gestion de projet",
+      "team": "N/A",
+      "pole": "pm",
+      "usage": "Ca m'arrive mais c'est rare",
+      "tools": "ChatGPT;Celui qui m'est proposé sur whats app (pour du perso);",
+      "freins": "Pas écologique + je veux continuer à \"réfléchir\";",
+      "use_cases": "Rédactions de spécifications;"
+    },
+    {
+      "id": 14,
+      "name": "Valentin QUILLIER",
+      "email": "valentin.quillier@arneo.io",
+      "department": "Gestion de projet",
+      "team": "N/A",
+      "pole": "pm",
+      "usage": "Oui tous les jours",
+      "tools": "ChatGPT;Perplexity;",
+      "freins": "Penser aux usages;",
+      "use_cases": "Rédaction simple (Email, CR de réunion, ..);Recherche, benchmark;"
+    },
+    {
+      "id": 15,
+      "name": "Inès ROUSSEAU",
+      "email": "ines.rousseau@arneo.io",
+      "department": "UX/UI/Créa",
+      "team": "N/A",
+      "pole": "design",
+      "usage": "Oui, occasionnellement",
+      "tools": "Claude (Anthropic);Figma AI / plugins IA dans Figma;",
+      "evaluation": "Utile sur certaines tâches spécifiques",
+      "freins": "Questions éthiques (droits d'auteur, formation des modèles);Coût des abonnements;Qualité/cohérence des résultats insuffisante;Doute sur la valeur ajoutée créative;Crainte de la dévalorisation du métier;"
+    },
+    {
+      "id": 16,
+      "name": "Jonathan VALLET",
+      "email": "jonathan.vallet@arneo.io",
+      "department": "Équipe développement/système",
+      "team": "Frontend;",
+      "pole": "dev",
+      "usage": "Oui, régulièrement",
+      "tools": "GitHub Copilot;ChatGPT;",
+      "evaluation": "Utile sur certaines tâches spécifiques",
+      "freins": "Préoccupations sur la confidentialité du code / fuites de données;Qualité des résultats insuffisante;",
+      "ide": "Visual Studio Code"
+    },
+    {
+      "id": 17,
+      "name": "Gilles CLEMENCEAU",
+      "email": "gilles.clemenceau@arneo.io",
+      "department": "Équipe développement/système",
+      "team": "Drupal;",
+      "pole": "dev",
+      "usage": "Oui, régulièrement",
+      "tools": "Google Gemini;ChatGPT;",
+      "evaluation": "Utile sur certaines tâches spécifiques",
+      "freins": "Préoccupations sur la confidentialité du code / fuites de données;Consommation de ressources locales (CPU/RAM);Qualité des résultats insuffisante;",
+      "ide": "PhpStorm"
+    },
+    {
+      "id": 18,
+      "name": "Osama ANNEBI",
+      "email": "osama.annebi@arneo.io",
+      "department": "Équipe développement/système",
+      "team": "Java;",
+      "pole": "dev",
+      "usage": "Oui, occasionnellement",
+      "tools": "GitHub Copilot;Autre assistant de code intégré à l'IDE (Continue, KiloCode, etc...);",
+      "evaluation": "Utile sur certaines tâches spécifiques",
+      "freins": "Préoccupations sur la confidentialité du code / fuites de données;Manque de temps pour expérimenter;",
+      "ide": "Intellij , VS CODE, Eclipse"
+    },
+    {
+      "id": 19,
+      "name": "Caroline CHAPEAU",
+      "email": "caroline.chapeau@arneo.io",
+      "department": "Équipe développement/système",
+      "team": "Drupal;",
+      "pole": "dev",
+      "usage": "Oui, régulièrement",
+      "tools": "ChatGPT;mistral AI;",
+      "evaluation": "Très utile, gain de temps significatif",
+      "freins": "Préoccupations sur la confidentialité du code / fuites de données;Consommation de ressources locales (CPU/RAM);",
+      "ide": "Phpstorm"
+    },
+    {
+      "id": 20,
+      "name": "Mathilde BOUIN",
+      "email": "mathilde.bouin@arneo.io",
+      "department": "Équipe développement/système",
+      "team": "Python/Django;",
+      "pole": "dev",
+      "usage": "Oui, régulièrement",
+      "tools": "Autre assistant de code intégré à l'IDE (Continue, KiloCode, etc...);",
+      "evaluation": "Utile sur certaines tâches spécifiques",
+      "freins": "Manque de formation / méconnaissance des outils;Consommation de ressources locales (CPU/RAM);Qualité des résultats insuffisante;Manque de temps pour expérimenter;",
+      "ide": "pycharm"
+    },
+    {
+      "id": 21,
+      "name": "Olivier PONCET",
+      "email": "olivier.poncet@arneo.io",
+      "department": "Équipe développement/système",
+      "team": "CTO;",
+      "pole": "dev",
+      "usage": "Oui, régulièrement",
+      "tools": "ChatGPT;Claude;Mistral, OLLAMA sur serveur local avec plusieurs modèles dont QWEN;",
+      "evaluation": "Utile sur certaines tâches spécifiques",
+      "freins": "Préoccupations sur la confidentialité du code / fuites de données;Le budget actuellement non défini par salarié;",
+      "ide": "vim"
+    },
+    {
+      "id": 22,
+      "name": "Charlotte DOMENECH",
+      "email": "charlotte.domenech@arneo.io",
+      "department": "Gestion de projet",
+      "team": "N/A",
+      "pole": "pm",
+      "usage": "Oui tous les jours",
+      "tools": "ChatGPT;Claude;Perplexity;",
+      "freins": "Coût des abonnements;Manque de formation / méconnaissance des outils;",
+      "use_cases": "Rédaction simple (Email, CR de réunion, ..);Recherche, benchmark;rédac;"
+    },
+    {
+      "id": 23,
+      "name": "Thamila MORSLI",
+      "email": "thamila.morsli@arneo.io",
+      "department": "Gestion de projet",
+      "team": "N/A",
+      "pole": "pm",
+      "usage": "Plusieurs fois par semaine",
+      "tools": "ChatGPT;Lovable;Perplexity;",
+      "freins": "Préoccupations sur la confidentialité des projets clients;Manque de formation / méconnaissance des outils;",
+      "use_cases": "Rédaction simple (Email, CR de réunion, ..);Rédactions de spécifications;Recherche, benchmark;Réflexion poussée (création de backlog, conception tehcnique ou fonctionnel ,aide à la compréhension, ..);Créa simple (wireframe, mock up lofi);"
+    },
+    {
+      "id": 24,
+      "name": "Elodie POULIQUEN",
+      "email": "elodie.pouliquen@arneo.io",
+      "department": "Gestion de projet",
+      "team": "N/A",
+      "pole": "pm",
+      "usage": "Oui tous les jours",
+      "tools": "ChatGPT;",
+      "freins": "impact environnemental;",
+      "use_cases": "Rédaction simple (Email, CR de réunion, ..);Recherche, benchmark;Réflexion poussée (création de backlog, conception tehcnique ou fonctionnel ,aide à la compréhension, ..);"
+    },
+    {
+      "id": 25,
+      "name": "Matthias ROUSSEAU",
+      "email": "matthias.rousseau@arneo.io",
+      "department": "Équipe développement/système",
+      "team": "Symfony;Système/DevOps;",
+      "pole": "dev",
+      "usage": "Oui, occasionnellement",
+      "tools": "ChatGPT;GitHub Copilot;",
+      "evaluation": "Utile sur certaines tâches spécifiques",
+      "freins": "Préoccupations sur la confidentialité du code / fuites de données;Consommation de ressources locales (CPU/RAM);Qualité des résultats insuffisante;Manque de temps pour expérimenter;Doute sur le gain réel de productivité;",
+      "ide": "phpstorm"
+    },
+    {
+      "id": 26,
+      "name": "Erick MPENE",
+      "email": "erick.mpene@arneo.io",
+      "department": "Équipe développement/système",
+      "team": "Système/DevOps;",
+      "pole": "dev",
+      "usage": "Non, mais j'aimerais essayer",
+      "tools": "ChatGPT;",
+      "evaluation": "Très utile, gain de temps significatif",
+      "freins": "Pas de frein particulier;Préoccupations sur la confidentialité du code / fuites de données;",
+      "ide": "VSCODE"
+    },
+    {
+      "id": 27,
+      "name": "Aymeric BOIS",
+      "email": "aymeric.bois@arneo.io",
+      "department": "Équipe développement/système",
+      "team": "Python/Django;",
+      "pole": "dev",
+      "usage": "Oui, occasionnellement",
+      "tools": "Outil CLI (Google Gemini CLI, OpenAI Codex, Claude Code, etc...);",
+      "evaluation": "Utile sur certaines tâches spécifiques",
+      "freins": "Manque de formation / méconnaissance des outils;Préoccupations sur la confidentialité du code / fuites de données;",
+      "ide": "PyCharm"
+    },
+    {
+      "id": 28,
+      "name": "Nicolas GRAS",
+      "email": "nicolas.gras@arneo.io",
+      "department": "Équipe développement/système",
+      "team": "Innovation/full stack;",
+      "pole": "dev",
+      "usage": "Oui, régulièrement",
+      "tools": "Autre assistant de code intégré à l'IDE (Continue, KiloCode, etc...);Outil CLI (Google Gemini CLI, OpenAI Codex, Claude Code, etc...);",
+      "evaluation": "Utile sur certaines tâches spécifiques",
+      "freins": "Complexité de mise en place;Consommation de ressources locales (CPU/RAM);Préoccupations sur la confidentialité du code / fuites de données;",
+      "ide": "vscode, zed, void (cursor opensource)"
+    },
+    {
+      "id": 29,
+      "name": "Mathieu FRANZEN",
+      "email": "mathieu.franzen@arneo.io",
+      "department": "UX/UI/Créa",
+      "team": "N/A",
+      "pole": "design",
+      "usage": "Oui, occasionnellement",
+      "tools": "Claude (Anthropic);Figma AI / plugins IA dans Figma;",
+      "evaluation": "Très utile, gain de temps significatif",
+      "freins": "Manque de formation / méconnaissance des outils;Coût des abonnements;"
+    },
+    {
+      "id": 30,
+      "name": "Arthur CORCY",
+      "email": "arthur.corcy@arneo.io",
+      "department": "UX/UI/Créa",
+      "team": "N/A",
+      "pole": "design",
+      "usage": "Oui, régulièrement",
+      "tools": "Claude (Anthropic);Figma AI / plugins IA dans Figma;",
+      "evaluation": "Très utile, gain de temps significatif",
+      "freins": "Préoccupations sur la confidentialité des projets clients;Questions éthiques (droits d'auteur, formation des modèles);Coût des abonnements;Qualité/cohérence des résultats insuffisante;"
+    }
+  ]
+};
+    </script>
+    <script>
+        // Load data
+        let surveyData = null;
+
+        // Data embedded directly
+        surveyData = SURVEY_DATA;
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initCharts();
+            populatePeople();
+        });
+
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function initCharts() {
+            if (!surveyData) return;
+
+            // Global tools chart
+            createBarChart('tools-chart', surveyData.top_tools);
+
+            // Freins chart
+            createBarChart('freins-chart', surveyData.top_freins);
+
+            // Adoption by pole
+            const adoptionData = [
+                ['Design', 100],
+                ['Développement', 92],
+                ['Gestion de projet', 71]
+            ];
+            createBarChart('adoption-chart', adoptionData, '%');
+
+            // Dev specific charts
+            const devPeople = surveyData.people.filter(p => p.pole === 'dev');
+            const devTools = {};
+            devPeople.forEach(p => {
+                if (p.tools && p.tools !== 'N/A') {
+                    p.tools.split(';').forEach(tool => {
+                        tool = tool.trim();
+                        if (tool) devTools[tool] = (devTools[tool] || 0) + 1;
+                    });
+                }
+            });
+            const devToolsArray = Object.entries(devTools).sort((a, b) => b[1] - a[1]).slice(0, 8);
+            createBarChart('dev-tools-chart', devToolsArray);
+
+            // Dev evaluation
+            const devEval = {};
+            devPeople.forEach(p => {
+                if (p.evaluation && p.evaluation !== 'N/A') {
+                    devEval[p.evaluation] = (devEval[p.evaluation] || 0) + 1;
+                }
+            });
+            createBarChart('dev-eval-chart', Object.entries(devEval).sort((a, b) => b[1] - a[1]));
+
+            // Dev IDEs
+            const devIde = {};
+            devPeople.forEach(p => {
+                if (p.ide && p.ide !== 'N/A') {
+                    devIde[p.ide] = (devIde[p.ide] || 0) + 1;
+                }
+            });
+            createBarChart('dev-ide-chart', Object.entries(devIde).sort((a, b) => b[1] - a[1]));
+
+            // Design charts
+            const designPeople = surveyData.people.filter(p => p.pole === 'design');
+            const designTools = {};
+            designPeople.forEach(p => {
+                if (p.tools && p.tools !== 'N/A') {
+                    p.tools.split(';').forEach(tool => {
+                        tool = tool.trim();
+                        if (tool) designTools[tool] = (designTools[tool] || 0) + 1;
+                    });
+                }
+            });
+            const designToolsArray = Object.entries(designTools).sort((a, b) => b[1] - a[1]).slice(0, 8);
+            createBarChart('design-tools-chart', designToolsArray);
+
+            // Design evaluation
+            const designEval = {};
+            designPeople.forEach(p => {
+                if (p.evaluation && p.evaluation !== 'N/A') {
+                    designEval[p.evaluation] = (designEval[p.evaluation] || 0) + 1;
+                }
+            });
+            createBarChart('design-eval-chart', Object.entries(designEval).sort((a, b) => b[1] - a[1]));
+
+            // PM charts
+            const pmPeople = surveyData.people.filter(p => p.pole === 'pm');
+            const pmTools = {};
+            pmPeople.forEach(p => {
+                if (p.tools && p.tools !== 'N/A') {
+                    p.tools.split(';').forEach(tool => {
+                        tool = tool.trim();
+                        if (tool) pmTools[tool] = (pmTools[tool] || 0) + 1;
+                    });
+                }
+            });
+            const pmToolsArray = Object.entries(pmTools).sort((a, b) => b[1] - a[1]).slice(0, 8);
+            createBarChart('pm-tools-chart', pmToolsArray);
+        }
+
+        function createBarChart(elementId, data, unit = '') {
+            const container = document.getElementById(elementId);
+            if (!container) return;
+
+            const maxValue = Math.max(...data.map(item => item[1]));
+
+            container.innerHTML = '';
+            data.forEach(item => {
+                const [label, value] = item;
+                const percentage = (value / maxValue) * 100;
+
+                const barItem = document.createElement('div');
+                barItem.className = 'bar-item';
+
+                const barLabel = document.createElement('div');
+                barLabel.className = 'bar-label';
+                barLabel.textContent = label;
+
+                const barWrapper = document.createElement('div');
+                barWrapper.className = 'bar-wrapper';
+
+                const barFill = document.createElement('div');
+                barFill.className = 'bar-fill';
+                barFill.style.width = '0%';
+                
+                const barValue = document.createElement('span');
+                barValue.className = 'bar-value';
+                barValue.textContent = value + unit;
+
+                barFill.appendChild(barValue);
+                barWrapper.appendChild(barFill);
+                barItem.appendChild(barLabel);
+                barItem.appendChild(barWrapper);
+                container.appendChild(barItem);
+
+                // Animate
+                setTimeout(() => {
+                    barFill.style.width = percentage + '%';
+                }, 100);
+            });
+        }
+
+        function populatePeople() {
+            if (!surveyData) return;
+
+            const grid = document.getElementById('people-grid');
+            grid.innerHTML = '';
+
+            surveyData.people.forEach(person => {
+                const card = createPersonCard(person);
+                grid.appendChild(card);
+            });
+        }
+
+        function createPersonCard(person) {
+            const card = document.createElement('div');
+            card.className = 'person-card';
+            card.dataset.pole = person.pole;
+            card.dataset.usage = categorizeUsage(person.usage);
+
+            const poleName = {
+                'dev': 'Développement',
+                'design': 'Design',
+                'pm': 'Gestion de projet'
+            }[person.pole];
+
+            card.innerHTML = `
+                <div class="person-name">${person.name}</div>
+                <div class="person-role">${poleName} • ${person.team}</div>
+                <div class="person-detail"><strong>Usage:</strong> ${person.usage}</div>
+                <div class="person-detail"><strong>Outils:</strong> ${truncate(person.tools, 100)}</div>
+                ${person.evaluation && person.evaluation !== 'N/A' ? `<div class="person-detail"><strong>Évaluation:</strong> ${person.evaluation}</div>` : ''}
+            `;
+
+            return card;
+        }
+
+        function categorizeUsage(usage) {
+            if (!usage || usage === 'N/A') return 'never';
+            if (usage.includes('régulièrement')) return 'regular';
+            if (usage.includes('occasionnellement')) return 'occasional';
+            if (usage.includes('rarement')) return 'rare';
+            return 'never';
+        }
+
+        function truncate(text, length) {
+            if (!text || text === 'N/A' || text === 'nan') return 'Non renseigné';
+            if (text.length <= length) return text;
+            return text.substring(0, length) + '...';
+        }
+
+        function filterPeople() {
+            const poleFilter = document.getElementById('pole-filter').value;
+            const usageFilter = document.getElementById('usage-filter').value;
+
+            document.querySelectorAll('.person-card').forEach(card => {
+                const pole = card.dataset.pole;
+                const usage = card.dataset.usage;
+
+                const poleMatch = poleFilter === 'all' || pole === poleFilter;
+                const usageMatch = usageFilter === 'all' || usage === usageFilter;
+
+                if (poleMatch && usageMatch) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Generate starburst rays
+        const starburst = document.querySelector('.starburst');
+        for (let i = 0; i < 12; i++) {
+            const ray = document.createElement('div');
+            ray.className = 'starburst-ray';
+            ray.style.transform = `rotate(${i * 30}deg)`;
+            starburst.appendChild(ray);
+        }
+    </script>
+</body>
+</html>
