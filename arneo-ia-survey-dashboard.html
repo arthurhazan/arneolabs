@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -128,8 +129,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Stats Grid */
@@ -360,7 +368,9 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .header, .container {
+
+            .header,
+            .container {
                 padding: 30px;
             }
 
@@ -439,6 +449,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <div class="header">
@@ -447,7 +458,7 @@
         </div>
         <div class="logo">ARNEO_</div>
         <h1 class="title">Usage de l'IA au sein<br>des départements</h1>
-        <p class="subtitle">Enquête interne • Novembre 2025 • 30 répondants</p>
+        <p class="subtitle">Enquête interne • Novembre 2025 • 31 répondants</p>
     </div>
 
     <!-- Tabs -->
@@ -465,7 +476,7 @@
         <div id="global" class="tab-content active">
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number">30</div>
+                    <div class="stat-number">31</div>
                     <div class="stat-label">Répondants total</div>
                 </div>
                 <div class="stat-card">
@@ -477,7 +488,7 @@
                     <div class="stat-label">Designers</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">7</div>
+                    <div class="stat-number">8</div>
                     <div class="stat-label">Chefs de projet</div>
                 </div>
             </div>
@@ -485,21 +496,28 @@
             <div class="insight-box">
                 <div class="insight-title">🎯 Insight clé</div>
                 <div class="insight-text">
-                    <strong>87% des répondants</strong> utilisent déjà des outils d'IA dans leur quotidien (régulièrement ou occasionnellement). L'adoption est particulièrement forte chez les designers (100%) et les développeurs (92%). Le principal frein reste la <strong>confidentialité des données</strong>, suivi par le <strong>coût des abonnements</strong>.
+                    <strong>87% des répondants</strong> utilisent déjà des outils d'IA dans leur quotidien
+                    (régulièrement ou occasionnellement). L'adoption est particulièrement forte chez les designers
+                    (100%) et les développeurs (92%). Le principal frein reste la <strong>confidentialité des
+                        données</strong>, suivi par le <strong>coût des abonnements</strong>.
                 </div>
             </div>
 
             <div class="chart-container">
                 <h3 class="chart-title">Top 10 des outils utilisés</h3>
                 <div class="bar-chart" id="tools-chart"></div>
-            <div style="margin-top: 15px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border-left: 3px solid rgba(255, 82, 41, 0.5);">
-                <div style="font-size: 13px; color: rgba(255, 255, 255, 0.5); margin-bottom: 5px; font-weight: 500;">
-                    Autres outils mentionnés (1-2×) :
+                <div
+                    style="margin-top: 15px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border-left: 3px solid rgba(255, 82, 41, 0.5);">
+                    <div
+                        style="font-size: 13px; color: rgba(255, 255, 255, 0.5); margin-bottom: 5px; font-weight: 500;">
+                        Autres outils mentionnés (1-2×) :
+                    </div>
+                    <div style="font-size: 14px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+                        Outils de génération de texte, Adobe Firefly, Mistral AI, Google Gemini CLI, OpenAI Codex,
+                        Claude Code, NotebookLM, Midjourney, Assistant IA Mantu, Assistant WhatsApp, Google Gemini,
+                        OLLAMA (serveur local), Lovable
+                    </div>
                 </div>
-                <div style="font-size: 14px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
-                    Outils de génération de texte, Adobe Firefly, Mistral AI, Google Gemini CLI, OpenAI Codex, Claude Code, NotebookLM, Midjourney, Assistant IA Mantu, Assistant WhatsApp, Google Gemini, OLLAMA (serveur local), Lovable
-                </div>
-            </div>
             </div>
 
             <div class="chart-container">
@@ -530,30 +548,43 @@
                 </div>
             </div>
 
+            <div class="stats-grid" style="grid-template-columns: 1fr 1fr; margin-top: -20px;">
+                <div class="chart-container" style="margin-bottom: 0;">
+                    <h3 class="chart-title" style="font-size: 20px;">Satisfaction (Dev)</h3>
+                    <div class="bar-chart" id="dev-eval-chart"></div>
+                </div>
+                <div class="chart-container" style="margin-bottom: 0;">
+                    <h3 class="chart-title" style="font-size: 20px;">Fréquence d'usage (Dev)</h3>
+                    <div class="bar-chart" id="dev-freq-chart"></div>
+                </div>
+            </div>
+
             <div class="insight-box">
                 <div class="insight-title">💡 Insights Développement</div>
                 <div class="insight-text">
-                    Les développeurs sont très adoptifs avec 92% d'utilisateurs. <strong>ChatGPT et GitHub Copilot</strong> dominent. Les cas d'usage principaux : <strong>autocomplétion, debugging, et compréhension du code existant</strong>. Le frein majeur reste la <strong>confidentialité du code</strong> (fuites de données potentielles).
+                    Les développeurs sont très adoptifs avec 92% d'utilisateurs. <strong>ChatGPT et GitHub
+                        Copilot</strong> dominent. Les cas d'usage principaux : <strong>autocomplétion, debugging, et
+                        compréhension du code existant</strong>. Le frein majeur reste la <strong>confidentialité du
+                        code</strong> (fuites de données potentielles).
                 </div>
             </div>
 
             <div class="chart-container">
                 <h3 class="chart-title">Outils les plus utilisés (Dev)</h3>
                 <div class="bar-chart" id="dev-tools-chart"></div>
-            <div style="margin-top: 15px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border-left: 3px solid rgba(255, 82, 41, 0.5);">
-                <div style="font-size: 13px; color: rgba(255, 255, 255, 0.5); margin-bottom: 5px; font-weight: 500;">
-                    Également mentionnés :
+                <div
+                    style="margin-top: 15px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border-left: 3px solid rgba(255, 82, 41, 0.5);">
+                    <div
+                        style="font-size: 13px; color: rgba(255, 255, 255, 0.5); margin-bottom: 5px; font-weight: 500;">
+                        Également mentionnés :
+                    </div>
+                    <div style="font-size: 14px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+                        Google Gemini, OLLAMA (serveur local)
+                    </div>
                 </div>
-                <div style="font-size: 14px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
-                    Google Gemini, OLLAMA (serveur local)
-                </div>
-            </div>
             </div>
 
-            <div class="chart-container">
-                <h3 class="chart-title">Évaluation de l'apport de l'IA</h3>
-                <div class="bar-chart" id="dev-eval-chart"></div>
-            </div>
+
 
             <div class="chart-container">
                 <h3 class="chart-title">IDEs utilisés</h3>
@@ -718,30 +749,47 @@
                 </div>
             </div>
 
+            <div class="stats-grid" style="grid-template-columns: 1fr 1fr; margin-top: -20px;">
+                <div class="chart-container" style="margin-bottom: 0;">
+                    <h3 class="chart-title" style="font-size: 20px;">Satisfaction (Design)</h3>
+                    <div class="bar-chart" id="design-eval-chart"></div>
+                </div>
+                <div class="chart-container" style="margin-bottom: 0;">
+                    <h3 class="chart-title" style="font-size: 20px;">Fréquence d'usage (Design)</h3>
+                    <div class="bar-chart" id="design-freq-chart"></div>
+                </div>
+            </div>
+
             <div class="insight-box">
                 <div class="insight-title">🎨 Insights Design</div>
                 <div class="insight-text">
-                    <strong>Adoption totale</strong> chez les designers avec 100% d'utilisateurs. Les outils phares : <strong>Claude, Figma AI, ChatGPT</strong>. Cas d'usage : <strong>génération de wireframes, microcopy, recherche d'inspiration, retouche d'images</strong>. Freins : <strong>confidentialité des projets clients</strong>, qualité/cohérence des résultats, et crainte de perte de contrôle créatif.
+                    <strong>Adoption totale</strong> chez les designers avec 100% d'utilisateurs. Les outils phares
+                    :
+                    <strong>Claude, Figma AI, ChatGPT</strong>. Cas d'usage : <strong>génération de wireframes,
+                        microcopy, recherche d'inspiration, retouche d'images</strong>. Freins :
+                    <strong>confidentialité
+                        des projets clients</strong>, qualité/cohérence des résultats, et crainte de perte de
+                    contrôle
+                    créatif.
                 </div>
             </div>
 
             <div class="chart-container">
                 <h3 class="chart-title">Outils les plus utilisés (Design)</h3>
                 <div class="bar-chart" id="design-tools-chart"></div>
-            <div style="margin-top: 15px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border-left: 3px solid rgba(255, 82, 41, 0.5);">
-                <div style="font-size: 13px; color: rgba(255, 255, 255, 0.5); margin-bottom: 5px; font-weight: 500;">
-                    Également mentionnés :
+                <div
+                    style="margin-top: 15px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border-left: 3px solid rgba(255, 82, 41, 0.5);">
+                    <div
+                        style="font-size: 13px; color: rgba(255, 255, 255, 0.5); margin-bottom: 5px; font-weight: 500;">
+                        Également mentionnés :
+                    </div>
+                    <div style="font-size: 14px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+                        NotebookLM, Midjourney
+                    </div>
                 </div>
-                <div style="font-size: 14px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
-                    NotebookLM, Midjourney
-                </div>
-            </div>
             </div>
 
-            <div class="chart-container">
-                <h3 class="chart-title">Évaluation de l'apport de l'IA</h3>
-                <div class="bar-chart" id="design-eval-chart"></div>
-            </div>
+
 
             <div class="chart-container">
                 <h3 class="chart-title">📋 Cas d'usage principaux</h3>
@@ -888,63 +936,143 @@
         <div id="pm" class="tab-content">
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number">7</div>
+                    <div class="stat-number">8</div>
                     <div class="stat-label">Chefs de projet</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">71%</div>
+                    <div class="stat-number">88%</div>
                     <div class="stat-label">Utilisent l'IA</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">43%</div>
+                    <div class="stat-number">88%</div>
                     <div class="stat-label">Usage régulier</div>
                 </div>
             </div>
 
+            <div class="stats-grid" style="grid-template-columns: 1fr 1fr; margin-top: -20px;">
+                <div class="chart-container" style="margin-bottom: 0;">
+                    <h3 class="chart-title" style="font-size: 20px;">Satisfaction (PM)</h3>
+                    <div class="bar-chart" id="pm-eval-chart"></div>
+                </div>
+                <div class="chart-container" style="margin-bottom: 0;">
+                    <h3 class="chart-title" style="font-size: 20px;">Fréquence d'usage (PM)</h3>
+                    <div class="bar-chart" id="pm-freq-chart"></div>
+                </div>
+            </div>
+
             <div class="insight-box">
-                <div class="insight-title">📋 Insights Gestion de projet</div>
+                <div class="insight-title">📋 Synthèse Gestion de projet</div>
                 <div class="insight-text">
-                    71% des chefs de projet utilisent l'IA, principalement pour la <strong>rédaction, synthèse de documents, et recherche d'informations</strong>. <strong>ChatGPT domine</strong> largement. Pain points : <strong>gestion des demandes clients contradictoires, coordination des équipes, documentation</strong>. Un potentiel fort pour automatiser les tâches administratives.
+                    <strong>88% d'adoption</strong> (7 sur 8) avec <strong>ChatGPT en tête</strong> (utilisé par
+                    tous).
+                    <br><br>
+                    <strong>Usage principal:</strong> Rédaction (emails, CR, spécifications) et recherche/benchmark.
+                    <br><br>
+                    <strong>Tâches les plus chronophages:</strong> Rédaction de communication (4/8) et
+                    spécifications
+                    (4/8).
+                    <br><br>
+                    <strong>Pain points majeurs:</strong> Documentation manquante (5/8) et manque de ressources
+                    (5/8).
+                    <br><br>
+                    <strong>Freins principaux:</strong> Confidentialité (4/8) et manque de formation (4/8).
+                    <br><br>
+                    Un potentiel fort pour automatiser les tâches administratives.
                 </div>
             </div>
 
             <div class="chart-container">
                 <h3 class="chart-title">Outils les plus utilisés (PM)</h3>
                 <div class="bar-chart" id="pm-tools-chart"></div>
-            <div style="margin-top: 15px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border-left: 3px solid rgba(255, 82, 41, 0.5);">
-                <div style="font-size: 13px; color: rgba(255, 255, 255, 0.5); margin-bottom: 5px; font-weight: 500;">
-                    Également mentionnés :
+                <div
+                    style="margin-top: 15px; padding: 15px; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border-left: 3px solid rgba(255, 82, 41, 0.5);">
+                    <div
+                        style="font-size: 13px; color: rgba(255, 255, 255, 0.5); margin-bottom: 5px; font-weight: 500;">
+                        Également mentionnés :
+                    </div>
+                    <div style="font-size: 14px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+                        Assistant IA Mantu, Assistant WhatsApp, Claude (Anthropic), Lovable
+                    </div>
                 </div>
-                <div style="font-size: 14px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
-                    Assistant IA Mantu, Assistant WhatsApp, Claude (Anthropic), Lovable
-                </div>
-            </div>
             </div>
 
             <div class="insight-box">
                 <div class="insight-title">📋 Cas d'usage principaux</div>
                 <div class="insight-text">
                     <ul style="margin: 10px 0; padding-left: 20px;">
-                        <li style="margin: 8px 0;">Rédaction simple (Email, CR de réunion, ..);Rédactions de spécifications;Réflexion poussée (création de backlog, conception tehcnique ou fonctionnel ,...</li>
-                        <li style="margin: 8px 0;">Rédaction simple (Email, CR de réunion, ..);Recherche, benchmark;</li>
+                        <li style="margin: 8px 0;">Rédaction simple (Email, CR de réunion, ..);Rédactions de
+                            spécifications;Réflexion poussée (création de backlog, conception tehcnique ou
+                            fonctionnel
+                            ,...</li>
+                        <li style="margin: 8px 0;">Rédaction simple (Email, CR de réunion, ..);Recherche, benchmark;
+                        </li>
                         <li style="margin: 8px 0;">Rédactions de spécifications;</li>
                     </ul>
                     <strong>Usage dominant :</strong> Rédaction (emails, CR, spécifications), recherche et benchmark
                 </div>
             </div>
 
-            <div class="insight-box">
-                <div class="insight-title">⚠️ Pain points & tâches chronophages</div>
+            <div class="chart-container">
+                <h3 class="chart-title">📋 Cas d'usage principaux (PM)</h3>
+                <div class="bar-chart">
+                    <div class="bar-item">
+                        <div class="bar-label">Rédaction d'emails et comptes-rendus</div>
+                        <div class="bar-wrapper">
+                            <div class="bar-fill" style="width: 0px;">
+                                <span class="bar-value">7/8</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Recherche et benchmark</div>
+                        <div class="bar-wrapper">
+                            <div class="bar-fill" style="width: 0px;">
+                                <span class="bar-value">7/8</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Rédaction de spécifications</div>
+                        <div class="bar-wrapper">
+                            <div class="bar-fill" style="width: 0px;">
+                                <span class="bar-value">4/8</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Réflexion stratégique (backlog, conception)</div>
+                        <div class="bar-wrapper">
+                            <div class="bar-fill" style="width: 0px;">
+                                <span class="bar-value">3/8</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label">Création de wireframes/maquettes</div>
+                        <div class="bar-wrapper">
+                            <div class="bar-fill" style="width: 0px;">
+                                <span class="bar-value">1/8</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">⚠️ Pain points & tâches chronophages</h3>
                 <div class="insight-text">
                     <strong>Frustrations principales :</strong>
                     <ul style="margin: 10px 0; padding-left: 20px;">
-                        <li style="margin: 5px 0;">La documentation manquante ou absente;Les estimations non fiables;Le manque de ressources sur les projets;</li>
+                        <li style="margin: 5px 0;">La documentation manquante ou absente;Les estimations non
+                            fiables;Le
+                            manque de ressources sur les projets;</li>
                         <li style="margin: 5px 0;">La documentation manquante ou absente;</li>
                         <li style="margin: 5px 0;">Le manque de ressources sur les projets;</li>
                     </ul>
                     <strong>Tâches les plus chronophages :</strong>
                     <ul style="margin: 10px 0; padding-left: 20px;">
-                        <li style="margin: 5px 0;">La rédaction de CR;La rédaction de communication;Récap de consommation;</li>
+                        <li style="margin: 5px 0;">La rédaction de CR;La rédaction de communication;Récap de
+                            consommation;</li>
                         <li style="margin: 5px 0;">La rédaction de communication;La rédaction de CR;</li>
                         <li style="margin: 5px 0;">Les spec;La rédaction de CR;</li>
                     </ul>
@@ -985,481 +1113,493 @@
 
     <script>
         const SURVEY_DATA = {
-  "total_respondents": 30,
-  "poles": {
-    "dev": 13,
-    "design": 10,
-    "pm": 7
-  },
-  "usage_by_pole": {
-    "dev": {
-      "Oui, régulièrement": 8,
-      "Oui, rarement": 1,
-      "Oui, occasionnellement": 3,
-      "Non, mais j'aimerais essayer": 1
-    },
-    "design": {
-      "Oui, régulièrement": 7,
-      "Oui, occasionnellement": 3
-    },
-    "pm": {
-      "Oui tous les jours": 5,
-      "Ca m'arrive mais c'est rare": 1,
-      "Plusieurs fois par semaine": 1
-    }
-  },
-  "top_tools": [
-    [
-      "ChatGPT",
-      15
-    ],
-    [
-      "Figma AI / plugins IA dans Figma",
-      8
-    ],
-    [
-      "Claude (Anthropic)",
-      7
-    ],
-    [
-      "Perplexity",
-      5
-    ],
-    [
-      "DALL-E / ChatGPT",
-      4
-    ],
-    [
-      "GitHub Copilot",
-      4
-    ],
-    [
-      "Plugins IA pour Photoshop/Illustrator",
-      3
-    ],
-    [
-      "Claude",
-      3
-    ],
-    [
-      "Autre assistant de code intégré à l'IDE (Continue, KiloCode, etc...)",
-      3
-    ],
-    [
-      "Outils de génération de texte/copy",
-      2
-    ]
-  ],
-  "top_freins": [
-    [
-      "Préoccupations sur la confidentialité du code / fuites de données",
-      12
-    ],
-    [
-      "Coût des abonnements",
-      10
-    ],
-    [
-      "Manque de formation / méconnaissance des outils",
-      9
-    ],
-    [
-      "Préoccupations sur la confidentialité des projets clients",
-      7
-    ],
-    [
-      "Qualité/cohérence des résultats insuffisante",
-      7
-    ],
-    [
-      "Consommation de ressources locales (CPU/RAM)",
-      7
-    ],
-    [
-      "Manque de temps pour expérimenter",
-      6
-    ],
-    [
-      "Qualité des résultats insuffisante",
-      5
-    ]
-  ],
-  "people": [
-    {
-      "id": 1,
-      "name": "Mélanie DE CRUZEL",
-      "email": "melanie.decruzel@arneo.io",
-      "department": "UX/UI",
-      "team": "N/A",
-      "pole": "design",
-      "usage": "Oui, régulièrement",
-      "tools": "Figma AI / plugins IA dans Figma;Perplexity, NotebookLM;",
-      "evaluation": "Utile sur certaines tâches spécifiques",
-      "freins": "Préoccupations sur la confidentialité des projets clients;Coût des abonnements;Manque de temps pour expérimenter;"
-    },
-    {
-      "id": 2,
-      "name": "Charline DANTIGNY",
-      "email": "charline.dantigny@arneo.io",
-      "department": "UX/UI",
-      "team": "N/A",
-      "pole": "design",
-      "usage": "Oui, régulièrement",
-      "tools": "Claude (Anthropic);Outils de génération de texte/copy;Perplexity;DALL-E / ChatGPT;",
-      "evaluation": "Très utile, gain de temps significatif",
-      "freins": "Coût des abonnements;Crainte de la dévalorisation du métier;"
-    },
-    {
-      "id": 3,
-      "name": "Charlotte SIEESS",
-      "email": "charlotte.sieess@arneo.io",
-      "department": "UX/UI",
-      "team": "N/A",
-      "pole": "design",
-      "usage": "Oui, régulièrement",
-      "tools": "Figma AI / plugins IA dans Figma;Claude (Anthropic);DALL-E / ChatGPT;",
-      "evaluation": "Utile sur certaines tâches spécifiques",
-      "freins": "Préoccupations sur la confidentialité des projets clients;Coût des abonnements;Qualité/cohérence des résultats insuffisante;Doute sur la valeur ajoutée créative;"
-    },
-    {
-      "id": 4,
-      "name": "Isabelle NGUYEN",
-      "email": "isabelle.nguyen@arneo.io",
-      "department": "UX/UI",
-      "team": "N/A",
-      "pole": "design",
-      "usage": "Oui, régulièrement",
-      "tools": "Claude (Anthropic);Figma AI / plugins IA dans Figma;Outils de génération de texte/copy;Perplexity, Chatgpt;",
-      "evaluation": "Très utile, gain de temps significatif",
-      "freins": "Coût des abonnements;la foultitude d'outils pas forcément utiles pour mon usage à l'instant t;"
-    },
-    {
-      "id": 5,
-      "name": "Romain GILLET",
-      "email": "romain.gillet@arneo.io",
-      "department": "UX/UI/Créa",
-      "team": "N/A",
-      "pole": "design",
-      "usage": "Oui, régulièrement",
-      "tools": "Midjourney;DALL-E / ChatGPT;Adobe Firefly;Claude (Anthropic);Figma AI / plugins IA dans Figma;Plugins IA pour Photoshop/Illustrator;Krea / Reve / Gemini / Perplexity;",
-      "evaluation": "Utile sur certaines tâches spécifiques",
-      "freins": "Préoccupations sur la confidentialité des projets clients;Questions éthiques (droits d'auteur, formation des modèles);Coût des abonnements;Qualité/cohérence des résultats insuffisante;"
-    },
-    {
-      "id": 6,
-      "name": "Caroline TURELLO",
-      "email": "caroline.turello@arneo.io",
-      "department": "UX/UI/Créa",
-      "team": "N/A",
-      "pole": "design",
-      "usage": "Oui, occasionnellement",
-      "tools": "Adobe Firefly;Plugins IA pour Photoshop/Illustrator;Chat GPT;Figma AI / plugins IA dans Figma;",
-      "evaluation": "Utile sur certaines tâches spécifiques",
-      "freins": "Coût des abonnements;Qualité/cohérence des résultats insuffisante;Manque de temps pour expérimenter;Doute sur la valeur ajoutée créative;Manque de formation / méconnaissance des outils;"
-    },
-    {
-      "id": 7,
-      "name": "Julie BERTI",
-      "email": "julie.berti@arneo.io",
-      "department": "UX/UI/Créa",
-      "team": "N/A",
-      "pole": "design",
-      "usage": "Oui, régulièrement",
-      "tools": "DALL-E / ChatGPT;Plugins IA pour Photoshop/Illustrator;",
-      "evaluation": "Utile sur certaines tâches spécifiques",
-      "freins": "Manque de formation / méconnaissance des outils;Qualité/cohérence des résultats insuffisante;Perte de contrôle créatif;Doute sur la valeur ajoutée créative;"
-    },
-    {
-      "id": 8,
-      "name": "Alexandre FILIPIAK",
-      "email": "alexandre.filipiak@arneo.io",
-      "department": "Équipe développement/système",
-      "team": "Java;",
-      "pole": "dev",
-      "usage": "Oui, régulièrement",
-      "tools": "ChatGPT;",
-      "evaluation": "Très utile, gain de temps significatif",
-      "freins": "Préoccupations sur la confidentialité du code / fuites de données;",
-      "ide": "intellij, visual studio code"
-    },
-    {
-      "id": 9,
-      "name": "Alexis BESSON",
-      "email": "alexis.besson@arneo.io",
-      "department": "Équipe développement/système",
-      "team": "Frontend;",
-      "pole": "dev",
-      "usage": "Oui, rarement",
-      "tools": "Claude;",
-      "evaluation": "Utile sur certaines tâches spécifiques",
-      "freins": "Préoccupations sur la confidentialité du code / fuites de données;Qualité des résultats insuffisante;Consommation de ressources locales (CPU/RAM);Manque de temps pour expérimenter;",
-      "ide": "VSCode"
-    },
-    {
-      "id": 10,
-      "name": "Julien JOURDE",
-      "email": "julien.jourde@arneo.io",
-      "department": "Équipe développement/système",
-      "team": "Symfony;Drupal;",
-      "pole": "dev",
-      "usage": "Oui, régulièrement",
-      "tools": "GitHub Copilot;ChatGPT;",
-      "evaluation": "Utile sur certaines tâches spécifiques",
-      "freins": "Préoccupations sur la confidentialité du code / fuites de données;Manque de formation / méconnaissance des outils;Consommation de ressources locales (CPU/RAM);",
-      "ide": "PHPStorm"
-    },
-    {
-      "id": 11,
-      "name": "Mélanie JEAN",
-      "email": "melanie.jean@arneo.io",
-      "department": "Gestion de projet",
-      "team": "N/A",
-      "pole": "pm",
-      "usage": "Oui tous les jours",
-      "tools": "ChatGPT;",
-      "freins": "Préoccupations sur la confidentialité des projets clients;Manque de formation / méconnaissance des outils;",
-      "use_cases": "Rédaction simple (Email, CR de réunion, ..);Rédactions de spécifications;Réflexion poussée (création de backlog, conception tehcnique ou fonctionnel ,aide à la compréhension, ..);Recherche, benchmark;"
-    },
-    {
-      "id": 12,
-      "name": "Astrid SERVAJEAN",
-      "email": "astrid.servajean@arneo.io",
-      "department": "Gestion de projet",
-      "team": "N/A",
-      "pole": "pm",
-      "usage": "Oui tous les jours",
-      "tools": "ChatGPT;Perplexity;L'outil IA de Mantu;",
-      "freins": "Préoccupations sur la confidentialité des projets clients;Qualité/cohérence des résultats insuffisante;",
-      "use_cases": "Rédaction simple (Email, CR de réunion, ..);Recherche, benchmark;"
-    },
-    {
-      "id": 13,
-      "name": "Abéline CHABORD",
-      "email": "abeline.chabord@arneo.io",
-      "department": "Gestion de projet",
-      "team": "N/A",
-      "pole": "pm",
-      "usage": "Ca m'arrive mais c'est rare",
-      "tools": "ChatGPT;Celui qui m'est proposé sur whats app (pour du perso);",
-      "freins": "Pas écologique + je veux continuer à \"réfléchir\";",
-      "use_cases": "Rédactions de spécifications;"
-    },
-    {
-      "id": 14,
-      "name": "Valentin QUILLIER",
-      "email": "valentin.quillier@arneo.io",
-      "department": "Gestion de projet",
-      "team": "N/A",
-      "pole": "pm",
-      "usage": "Oui tous les jours",
-      "tools": "ChatGPT;Perplexity;",
-      "freins": "Penser aux usages;",
-      "use_cases": "Rédaction simple (Email, CR de réunion, ..);Recherche, benchmark;"
-    },
-    {
-      "id": 15,
-      "name": "Inès ROUSSEAU",
-      "email": "ines.rousseau@arneo.io",
-      "department": "UX/UI/Créa",
-      "team": "N/A",
-      "pole": "design",
-      "usage": "Oui, occasionnellement",
-      "tools": "Claude (Anthropic);Figma AI / plugins IA dans Figma;",
-      "evaluation": "Utile sur certaines tâches spécifiques",
-      "freins": "Questions éthiques (droits d'auteur, formation des modèles);Coût des abonnements;Qualité/cohérence des résultats insuffisante;Doute sur la valeur ajoutée créative;Crainte de la dévalorisation du métier;"
-    },
-    {
-      "id": 16,
-      "name": "Jonathan VALLET",
-      "email": "jonathan.vallet@arneo.io",
-      "department": "Équipe développement/système",
-      "team": "Frontend;",
-      "pole": "dev",
-      "usage": "Oui, régulièrement",
-      "tools": "GitHub Copilot;ChatGPT;",
-      "evaluation": "Utile sur certaines tâches spécifiques",
-      "freins": "Préoccupations sur la confidentialité du code / fuites de données;Qualité des résultats insuffisante;",
-      "ide": "Visual Studio Code"
-    },
-    {
-      "id": 17,
-      "name": "Gilles CLEMENCEAU",
-      "email": "gilles.clemenceau@arneo.io",
-      "department": "Équipe développement/système",
-      "team": "Drupal;",
-      "pole": "dev",
-      "usage": "Oui, régulièrement",
-      "tools": "Google Gemini;ChatGPT;",
-      "evaluation": "Utile sur certaines tâches spécifiques",
-      "freins": "Préoccupations sur la confidentialité du code / fuites de données;Consommation de ressources locales (CPU/RAM);Qualité des résultats insuffisante;",
-      "ide": "PhpStorm"
-    },
-    {
-      "id": 18,
-      "name": "Osama ANNEBI",
-      "email": "osama.annebi@arneo.io",
-      "department": "Équipe développement/système",
-      "team": "Java;",
-      "pole": "dev",
-      "usage": "Oui, occasionnellement",
-      "tools": "GitHub Copilot;Autre assistant de code intégré à l'IDE (Continue, KiloCode, etc...);",
-      "evaluation": "Utile sur certaines tâches spécifiques",
-      "freins": "Préoccupations sur la confidentialité du code / fuites de données;Manque de temps pour expérimenter;",
-      "ide": "Intellij , VS CODE, Eclipse"
-    },
-    {
-      "id": 19,
-      "name": "Caroline CHAPEAU",
-      "email": "caroline.chapeau@arneo.io",
-      "department": "Équipe développement/système",
-      "team": "Drupal;",
-      "pole": "dev",
-      "usage": "Oui, régulièrement",
-      "tools": "ChatGPT;mistral AI;",
-      "evaluation": "Très utile, gain de temps significatif",
-      "freins": "Préoccupations sur la confidentialité du code / fuites de données;Consommation de ressources locales (CPU/RAM);",
-      "ide": "Phpstorm"
-    },
-    {
-      "id": 20,
-      "name": "Mathilde BOUIN",
-      "email": "mathilde.bouin@arneo.io",
-      "department": "Équipe développement/système",
-      "team": "Python/Django;",
-      "pole": "dev",
-      "usage": "Oui, régulièrement",
-      "tools": "Autre assistant de code intégré à l'IDE (Continue, KiloCode, etc...);",
-      "evaluation": "Utile sur certaines tâches spécifiques",
-      "freins": "Manque de formation / méconnaissance des outils;Consommation de ressources locales (CPU/RAM);Qualité des résultats insuffisante;Manque de temps pour expérimenter;",
-      "ide": "pycharm"
-    },
-    {
-      "id": 21,
-      "name": "Olivier PONCET",
-      "email": "olivier.poncet@arneo.io",
-      "department": "Équipe développement/système",
-      "team": "CTO;",
-      "pole": "dev",
-      "usage": "Oui, régulièrement",
-      "tools": "ChatGPT;Claude;Mistral, OLLAMA sur serveur local avec plusieurs modèles dont QWEN;",
-      "evaluation": "Utile sur certaines tâches spécifiques",
-      "freins": "Préoccupations sur la confidentialité du code / fuites de données;Le budget actuellement non défini par salarié;",
-      "ide": "vim"
-    },
-    {
-      "id": 22,
-      "name": "Charlotte DOMENECH",
-      "email": "charlotte.domenech@arneo.io",
-      "department": "Gestion de projet",
-      "team": "N/A",
-      "pole": "pm",
-      "usage": "Oui tous les jours",
-      "tools": "ChatGPT;Claude;Perplexity;",
-      "freins": "Coût des abonnements;Manque de formation / méconnaissance des outils;",
-      "use_cases": "Rédaction simple (Email, CR de réunion, ..);Recherche, benchmark;rédac;"
-    },
-    {
-      "id": 23,
-      "name": "Thamila MORSLI",
-      "email": "thamila.morsli@arneo.io",
-      "department": "Gestion de projet",
-      "team": "N/A",
-      "pole": "pm",
-      "usage": "Plusieurs fois par semaine",
-      "tools": "ChatGPT;Lovable;Perplexity;",
-      "freins": "Préoccupations sur la confidentialité des projets clients;Manque de formation / méconnaissance des outils;",
-      "use_cases": "Rédaction simple (Email, CR de réunion, ..);Rédactions de spécifications;Recherche, benchmark;Réflexion poussée (création de backlog, conception tehcnique ou fonctionnel ,aide à la compréhension, ..);Créa simple (wireframe, mock up lofi);"
-    },
-    {
-      "id": 24,
-      "name": "Elodie POULIQUEN",
-      "email": "elodie.pouliquen@arneo.io",
-      "department": "Gestion de projet",
-      "team": "N/A",
-      "pole": "pm",
-      "usage": "Oui tous les jours",
-      "tools": "ChatGPT;",
-      "freins": "impact environnemental;",
-      "use_cases": "Rédaction simple (Email, CR de réunion, ..);Recherche, benchmark;Réflexion poussée (création de backlog, conception tehcnique ou fonctionnel ,aide à la compréhension, ..);"
-    },
-    {
-      "id": 25,
-      "name": "Matthias ROUSSEAU",
-      "email": "matthias.rousseau@arneo.io",
-      "department": "Équipe développement/système",
-      "team": "Symfony;Système/DevOps;",
-      "pole": "dev",
-      "usage": "Oui, occasionnellement",
-      "tools": "ChatGPT;GitHub Copilot;",
-      "evaluation": "Utile sur certaines tâches spécifiques",
-      "freins": "Préoccupations sur la confidentialité du code / fuites de données;Consommation de ressources locales (CPU/RAM);Qualité des résultats insuffisante;Manque de temps pour expérimenter;Doute sur le gain réel de productivité;",
-      "ide": "phpstorm"
-    },
-    {
-      "id": 26,
-      "name": "Erick MPENE",
-      "email": "erick.mpene@arneo.io",
-      "department": "Équipe développement/système",
-      "team": "Système/DevOps;",
-      "pole": "dev",
-      "usage": "Non, mais j'aimerais essayer",
-      "tools": "ChatGPT;",
-      "evaluation": "Très utile, gain de temps significatif",
-      "freins": "Pas de frein particulier;Préoccupations sur la confidentialité du code / fuites de données;",
-      "ide": "VSCODE"
-    },
-    {
-      "id": 27,
-      "name": "Aymeric BOIS",
-      "email": "aymeric.bois@arneo.io",
-      "department": "Équipe développement/système",
-      "team": "Python/Django;",
-      "pole": "dev",
-      "usage": "Oui, occasionnellement",
-      "tools": "Outil CLI (Google Gemini CLI, OpenAI Codex, Claude Code, etc...);",
-      "evaluation": "Utile sur certaines tâches spécifiques",
-      "freins": "Manque de formation / méconnaissance des outils;Préoccupations sur la confidentialité du code / fuites de données;",
-      "ide": "PyCharm"
-    },
-    {
-      "id": 28,
-      "name": "Nicolas GRAS",
-      "email": "nicolas.gras@arneo.io",
-      "department": "Équipe développement/système",
-      "team": "Innovation/full stack;",
-      "pole": "dev",
-      "usage": "Oui, régulièrement",
-      "tools": "Autre assistant de code intégré à l'IDE (Continue, KiloCode, etc...);Outil CLI (Google Gemini CLI, OpenAI Codex, Claude Code, etc...);",
-      "evaluation": "Utile sur certaines tâches spécifiques",
-      "freins": "Complexité de mise en place;Consommation de ressources locales (CPU/RAM);Préoccupations sur la confidentialité du code / fuites de données;",
-      "ide": "vscode, zed, void (cursor opensource)"
-    },
-    {
-      "id": 29,
-      "name": "Mathieu FRANZEN",
-      "email": "mathieu.franzen@arneo.io",
-      "department": "UX/UI/Créa",
-      "team": "N/A",
-      "pole": "design",
-      "usage": "Oui, occasionnellement",
-      "tools": "Claude (Anthropic);Figma AI / plugins IA dans Figma;",
-      "evaluation": "Très utile, gain de temps significatif",
-      "freins": "Manque de formation / méconnaissance des outils;Coût des abonnements;"
-    },
-    {
-      "id": 30,
-      "name": "Arthur CORCY",
-      "email": "arthur.corcy@arneo.io",
-      "department": "UX/UI/Créa",
-      "team": "N/A",
-      "pole": "design",
-      "usage": "Oui, régulièrement",
-      "tools": "Claude (Anthropic);Figma AI / plugins IA dans Figma;",
-      "evaluation": "Très utile, gain de temps significatif",
-      "freins": "Préoccupations sur la confidentialité des projets clients;Questions éthiques (droits d'auteur, formation des modèles);Coût des abonnements;Qualité/cohérence des résultats insuffisante;"
-    }
-  ]
-};
+            "total_respondents": 30,
+            "poles": {
+                "dev": 13,
+                "design": 10,
+                "pm": 7
+            },
+            "usage_by_pole": {
+                "dev": {
+                    "Oui, régulièrement": 8,
+                    "Oui, rarement": 1,
+                    "Oui, occasionnellement": 3,
+                    "Non, mais j'aimerais essayer": 1
+                },
+                "design": {
+                    "Oui, régulièrement": 7,
+                    "Oui, occasionnellement": 3
+                },
+                "pm": {
+                    "Oui tous les jours": 5,
+                    "Ca m'arrive mais c'est rare": 1,
+                    "Plusieurs fois par semaine": 2
+                }
+            },
+            "top_tools": [
+                [
+                    "ChatGPT",
+                    15
+                ],
+                [
+                    "Figma AI / plugins IA dans Figma",
+                    8
+                ],
+                [
+                    "Claude (Anthropic)",
+                    7
+                ],
+                [
+                    "Perplexity",
+                    5
+                ],
+                [
+                    "DALL-E / ChatGPT",
+                    4
+                ],
+                [
+                    "GitHub Copilot",
+                    4
+                ],
+                [
+                    "Plugins IA pour Photoshop/Illustrator",
+                    3
+                ],
+                [
+                    "Claude",
+                    3
+                ],
+                [
+                    "Autre assistant de code intégré à l'IDE (Continue, KiloCode, etc...)",
+                    3
+                ],
+                [
+                    "Outils de génération de texte/copy",
+                    2
+                ]
+            ],
+            "top_freins": [
+                [
+                    "Préoccupations sur la confidentialité du code / fuites de données",
+                    12
+                ],
+                [
+                    "Coût des abonnements",
+                    10
+                ],
+                [
+                    "Manque de formation / méconnaissance des outils",
+                    9
+                ],
+                [
+                    "Préoccupations sur la confidentialité des projets clients",
+                    7
+                ],
+                [
+                    "Qualité/cohérence des résultats insuffisante",
+                    7
+                ],
+                [
+                    "Consommation de ressources locales (CPU/RAM)",
+                    7
+                ],
+                [
+                    "Manque de temps pour expérimenter",
+                    6
+                ],
+                [
+                    "Qualité des résultats insuffisante",
+                    5
+                ]
+            ],
+            "people": [
+                {
+                    "id": 1,
+                    "name": "Mélanie DE CRUZEL",
+                    "email": "melanie.decruzel@arneo.io",
+                    "department": "UX/UI",
+                    "team": "N/A",
+                    "pole": "design",
+                    "usage": "Oui, régulièrement",
+                    "tools": "Figma AI / plugins IA dans Figma;Perplexity, NotebookLM;",
+                    "evaluation": "Utile sur certaines tâches spécifiques",
+                    "freins": "Préoccupations sur la confidentialité des projets clients;Coût des abonnements;Manque de temps pour expérimenter;"
+                },
+                {
+                    "id": 2,
+                    "name": "Charline DANTIGNY",
+                    "email": "charline.dantigny@arneo.io",
+                    "department": "UX/UI",
+                    "team": "N/A",
+                    "pole": "design",
+                    "usage": "Oui, régulièrement",
+                    "tools": "Claude (Anthropic);Outils de génération de texte/copy;Perplexity;DALL-E / ChatGPT;",
+                    "evaluation": "Très utile, gain de temps significatif",
+                    "freins": "Coût des abonnements;Crainte de la dévalorisation du métier;"
+                },
+                {
+                    "id": 3,
+                    "name": "Charlotte SIEESS",
+                    "email": "charlotte.sieess@arneo.io",
+                    "department": "UX/UI",
+                    "team": "N/A",
+                    "pole": "design",
+                    "usage": "Oui, régulièrement",
+                    "tools": "Figma AI / plugins IA dans Figma;Claude (Anthropic);DALL-E / ChatGPT;",
+                    "evaluation": "Utile sur certaines tâches spécifiques",
+                    "freins": "Préoccupations sur la confidentialité des projets clients;Coût des abonnements;Qualité/cohérence des résultats insuffisante;Doute sur la valeur ajoutée créative;"
+                },
+                {
+                    "id": 4,
+                    "name": "Isabelle NGUYEN",
+                    "email": "isabelle.nguyen@arneo.io",
+                    "department": "UX/UI",
+                    "team": "N/A",
+                    "pole": "design",
+                    "usage": "Oui, régulièrement",
+                    "tools": "Claude (Anthropic);Figma AI / plugins IA dans Figma;Outils de génération de texte/copy;Perplexity, Chatgpt;",
+                    "evaluation": "Très utile, gain de temps significatif",
+                    "freins": "Coût des abonnements;la foultitude d'outils pas forcément utiles pour mon usage à l'instant t;"
+                },
+                {
+                    "id": 5,
+                    "name": "Romain GILLET",
+                    "email": "romain.gillet@arneo.io",
+                    "department": "UX/UI/Créa",
+                    "team": "N/A",
+                    "pole": "design",
+                    "usage": "Oui, régulièrement",
+                    "tools": "Midjourney;DALL-E / ChatGPT;Adobe Firefly;Claude (Anthropic);Figma AI / plugins IA dans Figma;Plugins IA pour Photoshop/Illustrator;Krea / Reve / Gemini / Perplexity;",
+                    "evaluation": "Utile sur certaines tâches spécifiques",
+                    "freins": "Préoccupations sur la confidentialité des projets clients;Questions éthiques (droits d'auteur, formation des modèles);Coût des abonnements;Qualité/cohérence des résultats insuffisante;"
+                },
+                {
+                    "id": 6,
+                    "name": "Caroline TURELLO",
+                    "email": "caroline.turello@arneo.io",
+                    "department": "UX/UI/Créa",
+                    "team": "N/A",
+                    "pole": "design",
+                    "usage": "Oui, occasionnellement",
+                    "tools": "Adobe Firefly;Plugins IA pour Photoshop/Illustrator;Chat GPT;Figma AI / plugins IA dans Figma;",
+                    "evaluation": "Utile sur certaines tâches spécifiques",
+                    "freins": "Coût des abonnements;Qualité/cohérence des résultats insuffisante;Manque de temps pour expérimenter;Doute sur la valeur ajoutée créative;Manque de formation / méconnaissance des outils;"
+                },
+                {
+                    "id": 7,
+                    "name": "Julie BERTI",
+                    "email": "julie.berti@arneo.io",
+                    "department": "UX/UI/Créa",
+                    "team": "N/A",
+                    "pole": "design",
+                    "usage": "Oui, régulièrement",
+                    "tools": "DALL-E / ChatGPT;Plugins IA pour Photoshop/Illustrator;",
+                    "evaluation": "Utile sur certaines tâches spécifiques",
+                    "freins": "Manque de formation / méconnaissance des outils;Qualité/cohérence des résultats insuffisante;Perte de contrôle créatif;Doute sur la valeur ajoutée créative;"
+                },
+                {
+                    "id": 8,
+                    "name": "Alexandre FILIPIAK",
+                    "email": "alexandre.filipiak@arneo.io",
+                    "department": "Équipe développement/système",
+                    "team": "Java;",
+                    "pole": "dev",
+                    "usage": "Oui, régulièrement",
+                    "tools": "ChatGPT;",
+                    "evaluation": "Très utile, gain de temps significatif",
+                    "freins": "Préoccupations sur la confidentialité du code / fuites de données;",
+                    "ide": "intellij, visual studio code"
+                },
+                {
+                    "id": 9,
+                    "name": "Alexis BESSON",
+                    "email": "alexis.besson@arneo.io",
+                    "department": "Équipe développement/système",
+                    "team": "Frontend;",
+                    "pole": "dev",
+                    "usage": "Oui, rarement",
+                    "tools": "Claude;",
+                    "evaluation": "Utile sur certaines tâches spécifiques",
+                    "freins": "Préoccupations sur la confidentialité du code / fuites de données;Qualité des résultats insuffisante;Consommation de ressources locales (CPU/RAM);Manque de temps pour expérimenter;",
+                    "ide": "VSCode"
+                },
+                {
+                    "id": 10,
+                    "name": "Julien JOURDE",
+                    "email": "julien.jourde@arneo.io",
+                    "department": "Équipe développement/système",
+                    "team": "Symfony;Drupal;",
+                    "pole": "dev",
+                    "usage": "Oui, régulièrement",
+                    "tools": "GitHub Copilot;ChatGPT;",
+                    "evaluation": "Utile sur certaines tâches spécifiques",
+                    "freins": "Préoccupations sur la confidentialité du code / fuites de données;Manque de formation / méconnaissance des outils;Consommation de ressources locales (CPU/RAM);",
+                    "ide": "PHPStorm"
+                },
+                {
+                    "id": 11,
+                    "name": "Mélanie JEAN",
+                    "email": "melanie.jean@arneo.io",
+                    "department": "Gestion de projet",
+                    "team": "N/A",
+                    "pole": "pm",
+                    "usage": "Oui tous les jours",
+                    "tools": "ChatGPT;",
+                    "freins": "Préoccupations sur la confidentialité des projets clients;Manque de formation / méconnaissance des outils;",
+                    "use_cases": "Rédaction simple (Email, CR de réunion, ..);Rédactions de spécifications;Réflexion poussée (création de backlog, conception tehcnique ou fonctionnel ,aide à la compréhension, ..);Recherche, benchmark;"
+                },
+                {
+                    "id": 12,
+                    "name": "Astrid SERVAJEAN",
+                    "email": "astrid.servajean@arneo.io",
+                    "department": "Gestion de projet",
+                    "team": "N/A",
+                    "pole": "pm",
+                    "usage": "Oui tous les jours",
+                    "tools": "ChatGPT;Perplexity;L'outil IA de Mantu;",
+                    "freins": "Préoccupations sur la confidentialité des projets clients;Qualité/cohérence des résultats insuffisante;",
+                    "use_cases": "Rédaction simple (Email, CR de réunion, ..);Recherche, benchmark;"
+                },
+                {
+                    "id": 13,
+                    "name": "Abéline CHABORD",
+                    "email": "abeline.chabord@arneo.io",
+                    "department": "Gestion de projet",
+                    "team": "N/A",
+                    "pole": "pm",
+                    "usage": "Ca m'arrive mais c'est rare",
+                    "tools": "ChatGPT;Celui qui m'est proposé sur whats app (pour du perso);",
+                    "freins": "Pas écologique + je veux continuer à \"réfléchir\";",
+                    "use_cases": "Rédactions de spécifications;"
+                },
+                {
+                    "id": 14,
+                    "name": "Valentin QUILLIER",
+                    "email": "valentin.quillier@arneo.io",
+                    "department": "Gestion de projet",
+                    "team": "N/A",
+                    "pole": "pm",
+                    "usage": "Oui tous les jours",
+                    "tools": "ChatGPT;Perplexity;",
+                    "freins": "Penser aux usages;",
+                    "use_cases": "Rédaction simple (Email, CR de réunion, ..);Recherche, benchmark;"
+                },
+                {
+                    "id": 15,
+                    "name": "Inès ROUSSEAU",
+                    "email": "ines.rousseau@arneo.io",
+                    "department": "UX/UI/Créa",
+                    "team": "N/A",
+                    "pole": "design",
+                    "usage": "Oui, occasionnellement",
+                    "tools": "Claude (Anthropic);Figma AI / plugins IA dans Figma;",
+                    "evaluation": "Utile sur certaines tâches spécifiques",
+                    "freins": "Questions éthiques (droits d'auteur, formation des modèles);Coût des abonnements;Qualité/cohérence des résultats insuffisante;Doute sur la valeur ajoutée créative;Crainte de la dévalorisation du métier;"
+                },
+                {
+                    "id": 16,
+                    "name": "Jonathan VALLET",
+                    "email": "jonathan.vallet@arneo.io",
+                    "department": "Équipe développement/système",
+                    "team": "Frontend;",
+                    "pole": "dev",
+                    "usage": "Oui, régulièrement",
+                    "tools": "GitHub Copilot;ChatGPT;",
+                    "evaluation": "Utile sur certaines tâches spécifiques",
+                    "freins": "Préoccupations sur la confidentialité du code / fuites de données;Qualité des résultats insuffisante;",
+                    "ide": "Visual Studio Code"
+                },
+                {
+                    "id": 17,
+                    "name": "Gilles CLEMENCEAU",
+                    "email": "gilles.clemenceau@arneo.io",
+                    "department": "Équipe développement/système",
+                    "team": "Drupal;",
+                    "pole": "dev",
+                    "usage": "Oui, régulièrement",
+                    "tools": "Google Gemini;ChatGPT;",
+                    "evaluation": "Utile sur certaines tâches spécifiques",
+                    "freins": "Préoccupations sur la confidentialité du code / fuites de données;Consommation de ressources locales (CPU/RAM);Qualité des résultats insuffisante;",
+                    "ide": "PhpStorm"
+                },
+                {
+                    "id": 18,
+                    "name": "Osama ANNEBI",
+                    "email": "osama.annebi@arneo.io",
+                    "department": "Équipe développement/système",
+                    "team": "Java;",
+                    "pole": "dev",
+                    "usage": "Oui, occasionnellement",
+                    "tools": "GitHub Copilot;Autre assistant de code intégré à l'IDE (Continue, KiloCode, etc...);",
+                    "evaluation": "Utile sur certaines tâches spécifiques",
+                    "freins": "Préoccupations sur la confidentialité du code / fuites de données;Manque de temps pour expérimenter;",
+                    "ide": "Intellij , VS CODE, Eclipse"
+                },
+                {
+                    "id": 19,
+                    "name": "Caroline CHAPEAU",
+                    "email": "caroline.chapeau@arneo.io",
+                    "department": "Équipe développement/système",
+                    "team": "Drupal;",
+                    "pole": "dev",
+                    "usage": "Oui, régulièrement",
+                    "tools": "ChatGPT;mistral AI;",
+                    "evaluation": "Très utile, gain de temps significatif",
+                    "freins": "Préoccupations sur la confidentialité du code / fuites de données;Consommation de ressources locales (CPU/RAM);",
+                    "ide": "Phpstorm"
+                },
+                {
+                    "id": 20,
+                    "name": "Mathilde BOUIN",
+                    "email": "mathilde.bouin@arneo.io",
+                    "department": "Équipe développement/système",
+                    "team": "Python/Django;",
+                    "pole": "dev",
+                    "usage": "Oui, régulièrement",
+                    "tools": "Autre assistant de code intégré à l'IDE (Continue, KiloCode, etc...);",
+                    "evaluation": "Utile sur certaines tâches spécifiques",
+                    "freins": "Manque de formation / méconnaissance des outils;Consommation de ressources locales (CPU/RAM);Qualité des résultats insuffisante;Manque de temps pour expérimenter;",
+                    "ide": "pycharm"
+                },
+                {
+                    "id": 21,
+                    "name": "Olivier PONCET",
+                    "email": "olivier.poncet@arneo.io",
+                    "department": "Équipe développement/système",
+                    "team": "CTO;",
+                    "pole": "dev",
+                    "usage": "Oui, régulièrement",
+                    "tools": "ChatGPT;Claude;Mistral, OLLAMA sur serveur local avec plusieurs modèles dont QWEN;",
+                    "evaluation": "Utile sur certaines tâches spécifiques",
+                    "freins": "Préoccupations sur la confidentialité du code / fuites de données;Le budget actuellement non défini par salarié;",
+                    "ide": "vim"
+                },
+                {
+                    "id": 22,
+                    "name": "Charlotte DOMENECH",
+                    "email": "charlotte.domenech@arneo.io",
+                    "department": "Gestion de projet",
+                    "team": "N/A",
+                    "pole": "pm",
+                    "usage": "Oui tous les jours",
+                    "tools": "ChatGPT;Claude;Perplexity;",
+                    "freins": "Coût des abonnements;Manque de formation / méconnaissance des outils;",
+                    "use_cases": "Rédaction simple (Email, CR de réunion, ..);Recherche, benchmark;rédac;"
+                },
+                {
+                    "id": 23,
+                    "name": "Thamila MORSLI",
+                    "email": "thamila.morsli@arneo.io",
+                    "department": "Gestion de projet",
+                    "team": "N/A",
+                    "pole": "pm",
+                    "usage": "Plusieurs fois par semaine",
+                    "tools": "ChatGPT;Lovable;Perplexity;",
+                    "freins": "Préoccupations sur la confidentialité des projets clients;Manque de formation / méconnaissance des outils;",
+                    "use_cases": "Rédaction simple (Email, CR de réunion, ..);Rédactions de spécifications;Recherche, benchmark;Réflexion poussée (création de backlog, conception tehcnique ou fonctionnel ,aide à la compréhension, ..);Créa simple (wireframe, mock up lofi);"
+                },
+                {
+                    "id": 24,
+                    "name": "Elodie POULIQUEN",
+                    "email": "elodie.pouliquen@arneo.io",
+                    "department": "Gestion de projet",
+                    "team": "N/A",
+                    "pole": "pm",
+                    "usage": "Oui tous les jours",
+                    "tools": "ChatGPT;",
+                    "freins": "impact environnemental;",
+                    "use_cases": "Rédaction simple (Email, CR de réunion, ..);Recherche, benchmark;Réflexion poussée (création de backlog, conception tehcnique ou fonctionnel ,aide à la compréhension, ..);"
+                },
+                {
+                    "id": 25,
+                    "name": "Matthias ROUSSEAU",
+                    "email": "matthias.rousseau@arneo.io",
+                    "department": "Équipe développement/système",
+                    "team": "Symfony;Système/DevOps;",
+                    "pole": "dev",
+                    "usage": "Oui, occasionnellement",
+                    "tools": "ChatGPT;GitHub Copilot;",
+                    "evaluation": "Utile sur certaines tâches spécifiques",
+                    "freins": "Préoccupations sur la confidentialité du code / fuites de données;Consommation de ressources locales (CPU/RAM);Qualité des résultats insuffisante;Manque de temps pour expérimenter;Doute sur le gain réel de productivité;",
+                    "ide": "phpstorm"
+                },
+                {
+                    "id": 26,
+                    "name": "Erick MPENE",
+                    "email": "erick.mpene@arneo.io",
+                    "department": "Équipe développement/système",
+                    "team": "Système/DevOps;",
+                    "pole": "dev",
+                    "usage": "Non, mais j'aimerais essayer",
+                    "tools": "ChatGPT;",
+                    "evaluation": "Très utile, gain de temps significatif",
+                    "freins": "Pas de frein particulier;Préoccupations sur la confidentialité du code / fuites de données;",
+                    "ide": "VSCODE"
+                },
+                {
+                    "id": 27,
+                    "name": "Aymeric BOIS",
+                    "email": "aymeric.bois@arneo.io",
+                    "department": "Équipe développement/système",
+                    "team": "Python/Django;",
+                    "pole": "dev",
+                    "usage": "Oui, occasionnellement",
+                    "tools": "Outil CLI (Google Gemini CLI, OpenAI Codex, Claude Code, etc...);",
+                    "evaluation": "Utile sur certaines tâches spécifiques",
+                    "freins": "Manque de formation / méconnaissance des outils;Préoccupations sur la confidentialité du code / fuites de données;",
+                    "ide": "PyCharm"
+                },
+                {
+                    "id": 28,
+                    "name": "Nicolas GRAS",
+                    "email": "nicolas.gras@arneo.io",
+                    "department": "Équipe développement/système",
+                    "team": "Innovation/full stack;",
+                    "pole": "dev",
+                    "usage": "Oui, régulièrement",
+                    "tools": "Autre assistant de code intégré à l'IDE (Continue, KiloCode, etc...);Outil CLI (Google Gemini CLI, OpenAI Codex, Claude Code, etc...);",
+                    "evaluation": "Utile sur certaines tâches spécifiques",
+                    "freins": "Complexité de mise en place;Consommation de ressources locales (CPU/RAM);Préoccupations sur la confidentialité du code / fuites de données;",
+                    "ide": "vscode, zed, void (cursor opensource)"
+                },
+                {
+                    "id": 29,
+                    "name": "Mathieu FRANZEN",
+                    "email": "mathieu.franzen@arneo.io",
+                    "department": "UX/UI/Créa",
+                    "team": "N/A",
+                    "pole": "design",
+                    "usage": "Oui, occasionnellement",
+                    "tools": "Claude (Anthropic);Figma AI / plugins IA dans Figma;",
+                    "evaluation": "Très utile, gain de temps significatif",
+                    "freins": "Manque de formation / méconnaissance des outils;Coût des abonnements;"
+                },
+                {
+                    "id": 30,
+                    "name": "Arthur CORCY",
+                    "email": "arthur.corcy@arneo.io",
+                    "department": "UX/UI/Créa",
+                    "team": "N/A",
+                    "pole": "design",
+                    "usage": "Oui, régulièrement",
+                    "tools": "Claude (Anthropic);Figma AI / plugins IA dans Figma;",
+                    "evaluation": "Très utile, gain de temps significatif",
+                    "freins": "Préoccupations sur la confidentialité des projets clients;Questions éthiques (droits d'auteur, formation des modèles);Coût des abonnements;Qualité/cohérence des résultats insuffisante;"
+                },
+                {
+                    "id": 31,
+                    "name": "Justine GAUTHIER",
+                    "email": "justine.gauthier@arneo.io",
+                    "department": "Gestion de projet",
+                    "team": "N/A",
+                    "pole": "pm",
+                    "usage": "Plusieurs fois par semaine",
+                    "tools": "Claude;ChatGPT;",
+                    "freins": "Préoccupations sur la confidentialité des projets clients;Manque de formation / méconnaissance des outils;Coût des abonnements;Manque de temps pour expérimenter;",
+                    "use_cases": "Rédaction simple (Email, CR de réunion, ..);Rédactions de spécifications;Recherche, benchmark;"
+                }
+            ]
+        };
     </script>
     <script>
         // Load data
@@ -1467,9 +1607,9 @@
 
         // Data embedded directly
         surveyData = SURVEY_DATA;
-        
+
         // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             initCharts();
             populatePeople();
         });
@@ -1490,14 +1630,14 @@
 
         function initCharts() {
             if (!surveyData) return;
-            
+
             // Données normalisées
             const normalizedIdeStats = [["VSCode", 6], ["PhpStorm", 4], ["IntelliJ IDEA", 2], ["PyCharm", 2], ["Eclipse", 1], ["Vim/Neovim", 1], ["Zed", 1], ["Cursor/Void", 1]];
-            
+
             // Données normalisées par pôle
             const normalizedDevTools = [["ChatGPT", 8], ["Assistants de code IDE", 6], ["Claude (Anthropic)", 4], ["GitHub Copilot", 4], ["Google Gemini", 3], ["OpenAI Codex", 2], ["mistral AI", 1], ["Mistral", 1]];
             const normalizedDesignTools = [["Figma AI / plugins IA", 8], ["Claude (Anthropic)", 7], ["ChatGPT", 6], ["Perplexity", 4], ["Plugins IA Adobe", 3], ["Outils de génération de texte/copy", 2], ["Adobe Firefly", 2], ["NotebookLM", 1]];
-            const normalizedPmTools = [["ChatGPT", 7], ["Perplexity", 4], ["L'outil IA de Mantu", 1], ["Celui qui m'est proposé sur whats app (pour du perso)", 1], ["Claude (Anthropic)", 1], ["Lovable", 1]];
+            const normalizedPmTools = [["ChatGPT", 8], ["Perplexity", 4], ["Claude", 2], ["L'outil IA de Mantu", 1], ["Lovable", 1]];
             const normalizedToolStats = [["ChatGPT", 21], ["Claude (Anthropic)", 12], ["Figma AI / plugins IA", 8], ["Perplexity", 8], ["Assistants de code IDE", 6], ["GitHub Copilot", 4], ["Plugins IA Adobe", 3], ["Génération de texte", 2], ["Adobe Firefly", 2], ["Outil CLI (Google Gemini CLI", 2], ["OpenAI Codex", 2], ["NotebookLM", 1]];
 
             // Global tools chart
@@ -1525,63 +1665,57 @@
                     });
                 }
             });
-            const devToolsArray = Object.entries(devTools).sort((a, b) => b[1] - a[1]).slice(0, 8);
             createBarChart('dev-tools-chart', normalizedDevTools);
 
-            // Dev evaluation
+            // Dev evaluation & Frequency
             const devEval = {};
+            const devFreq = {};
             devPeople.forEach(p => {
-                if (p.evaluation && p.evaluation !== 'N/A') {
-                    devEval[p.evaluation] = (devEval[p.evaluation] || 0) + 1;
-                }
+                if (p.evaluation && p.evaluation !== 'N/A') devEval[p.evaluation] = (devEval[p.evaluation] || 0) + 1;
+                if (p.usage && p.usage !== 'N/A') devFreq[p.usage] = (devFreq[p.usage] || 0) + 1;
             });
             createBarChart('dev-eval-chart', Object.entries(devEval).sort((a, b) => b[1] - a[1]));
+            createBarChart('dev-freq-chart', Object.entries(devFreq).sort((a, b) => b[1] - a[1]));
 
             // Dev IDEs
-            const devIde = {};
-            devPeople.forEach(p => {
-                if (p.ide && p.ide !== 'N/A') {
-                    devIde[p.ide] = (devIde[p.ide] || 0) + 1;
-                }
-            });
             createBarChart('dev-ide-chart', normalizedIdeStats);
 
             // Design charts
             const designPeople = surveyData.people.filter(p => p.pole === 'design');
-            const designTools = {};
-            designPeople.forEach(p => {
-                if (p.tools && p.tools !== 'N/A') {
-                    p.tools.split(';').forEach(tool => {
-                        tool = tool.trim();
-                        if (tool) designTools[tool] = (designTools[tool] || 0) + 1;
-                    });
-                }
-            });
-            const designToolsArray = Object.entries(designTools).sort((a, b) => b[1] - a[1]).slice(0, 8);
             createBarChart('design-tools-chart', normalizedDesignTools);
 
-            // Design evaluation
+            // Design evaluation & Frequency
             const designEval = {};
+            const designFreq = {};
             designPeople.forEach(p => {
-                if (p.evaluation && p.evaluation !== 'N/A') {
-                    designEval[p.evaluation] = (designEval[p.evaluation] || 0) + 1;
-                }
+                if (p.evaluation && p.evaluation !== 'N/A') designEval[p.evaluation] = (designEval[p.evaluation] || 0) + 1;
+                if (p.usage && p.usage !== 'N/A') designFreq[p.usage] = (designFreq[p.usage] || 0) + 1;
             });
             createBarChart('design-eval-chart', Object.entries(designEval).sort((a, b) => b[1] - a[1]));
+            createBarChart('design-freq-chart', Object.entries(designFreq).sort((a, b) => b[1] - a[1]));
 
             // PM charts
             const pmPeople = surveyData.people.filter(p => p.pole === 'pm');
-            const pmTools = {};
-            pmPeople.forEach(p => {
-                if (p.tools && p.tools !== 'N/A') {
-                    p.tools.split(';').forEach(tool => {
-                        tool = tool.trim();
-                        if (tool) pmTools[tool] = (pmTools[tool] || 0) + 1;
-                    });
-                }
-            });
-            const pmToolsArray = Object.entries(pmTools).sort((a, b) => b[1] - a[1]).slice(0, 8);
             createBarChart('pm-tools-chart', normalizedPmTools);
+
+            // PM evaluation & Frequency (Need to extract or assume data if missing in JSON, but usage is there)
+            const pmFreq = {};
+            const pmEval = {};
+            // Note: PMs didn't have specific 'evaluation' field in original data in the same way, but let's check
+            pmPeople.forEach(p => {
+                if (p.usage && p.usage !== 'N/A') pmFreq[p.usage] = (pmFreq[p.usage] || 0) + 1;
+                // Assuming some might have evaluation, if not it will be empty which maps to empty chart
+                if (p.evaluation && p.evaluation !== 'N/A') pmEval[p.evaluation] = (pmEval[p.evaluation] || 0) + 1;
+            });
+            createBarChart('pm-freq-chart', Object.entries(pmFreq).sort((a, b) => b[1] - a[1]));
+            if (Object.keys(pmEval).length > 0) {
+                createBarChart('pm-eval-chart', Object.entries(pmEval).sort((a, b) => b[1] - a[1]));
+            } else {
+                // If no data, maybe show a placeholder or hide? For now let's leave empty or put dummy if needed. 
+                // Actually, let's look at the data. Justine has no 'evaluation'. 
+                // We'll write "Données non disponibles" if empty
+                document.getElementById('pm-eval-chart').innerHTML = '<div style="color:var(--gris-moyen); padding:10px;">Données non collectées pour ce pôle</div>';
+            }
             // Animer les barres statiques (cas d'usage et besoins)
             setTimeout(() => {
                 const staticBars = document.querySelectorAll('.bar-fill[style*="width: 0px"]');
@@ -1607,7 +1741,7 @@
             if (!container) return;
 
             const maxValue = Math.max(...data.map(item => item[1]));
-            
+
             // Calculer la largeur maximale disponible de manière responsive
             const containerWidth = container.offsetWidth;
             const labelWidth = 280; // Largeur fixe des labels
@@ -1633,7 +1767,7 @@
                 const barFill = document.createElement('div');
                 barFill.className = 'bar-fill';
                 barFill.style.width = '0px';
-                
+
                 const barValue = document.createElement('span');
                 barValue.className = 'bar-value';
                 barValue.textContent = value + unit;
@@ -1688,9 +1822,9 @@
 
         function categorizeUsage(usage) {
             if (!usage || usage === 'N/A') return 'never';
-            if (usage.includes('régulièrement')) return 'regular';
+            if (usage.includes('régulièrement') || usage.includes('tous les jours') || usage.includes('Plusieurs fois par semaine')) return 'regular';
             if (usage.includes('occasionnellement')) return 'occasional';
-            if (usage.includes('rarement')) return 'rare';
+            if (usage.includes('rarement') || usage.includes('rare')) return 'rare';
             return 'never';
         }
 
@@ -1721,9 +1855,9 @@
 
         // Redessiner les charts au resize de la fenêtre
         let resizeTimer;
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function() {
+            resizeTimer = setTimeout(function () {
                 if (surveyData) {
                     initCharts();
                 }
@@ -1740,4 +1874,5 @@
         }
     </script>
 </body>
+
 </html>
